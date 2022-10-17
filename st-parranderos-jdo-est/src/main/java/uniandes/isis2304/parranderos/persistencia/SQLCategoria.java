@@ -1,0 +1,54 @@
+package uniandes.isis2304.parranderos.persistencia;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+import java.util.List;
+import uniandes.isis2304.parranderos.negocio.*;
+
+public class SQLCategoria {
+    private final static String SQL = PersistenciaParranderos.SQL;
+    private PersistenciaParranderos pp;
+
+    public SQLCategoria (PersistenciaParranderos pp)
+	{
+		this.pp = pp;
+	}
+
+    public String adicionarCateogira (PersistenceManager pm, String  tipo, String nombreProducto) 
+	{
+        Query q = pm.newQuery(SQL, "INSERT INTO " +  "(tipo, nombre_producto) values (?, ?)");
+        q.setParameters(tipo, nombreProducto);
+        return (String) q.executeUnique();
+	}
+
+    public String eliminarCategoriaPorTipo (PersistenceManager pm, String  tipo)
+    {
+        Query q = pm.newQuery(SQL, "DELETE FROM " +  "WHERE tipo = ?");
+        q.setParameters(tipo);
+        return (String) q.executeUnique();
+    }
+
+    public Categoria darCategoriaPorTipo (PersistenceManager pm, String  tipo)
+    {
+        Query q = pm.newQuery(SQL, "SELECT * FROM " +  "WHERE tipo = ?");
+        q.setResultClass(Categoria.class);
+        q.setParameters(tipo);
+        return (Categoria) q.executeUnique();
+    }
+
+    public List<Categoria> darCategoriasPorTipo (PersistenceManager pm, String  tipo)
+    {
+        Query q = pm.newQuery(SQL, "SELECT * FROM " +  "WHERE tipo = ?");
+        q.setResultClass(Categoria.class);
+        q.setParameters(tipo);
+        return (List<Categoria>) q.executeList();
+    }
+
+    public List<Categoria> darCategorias (PersistenceManager pm)
+    {
+        Query q = pm.newQuery(SQL, "SELECT * FROM " +  "WHERE tipo = ?");
+        q.setResultClass(Categoria.class);
+        return (List<Categoria>) q.executeList();
+    }
+
+}
