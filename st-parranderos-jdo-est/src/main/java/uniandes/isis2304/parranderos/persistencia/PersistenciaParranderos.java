@@ -122,6 +122,18 @@ public class PersistenciaParranderos
 	 * Atributo para el acceso a la tabla VISITAN de la base de datos
 	 */
 	private SQLVisitan sqlVisitan;
+
+	private SQLUsuario sqlUsuario;
+
+	private SQLPromocion sqlPromocion;
+
+	private SQLProducto sqlProducto;
+
+	private SQLFactura sqlFactura;
+
+	private SQLCompra sqlCompra;
+
+	private SQLCategoria sqlCategoria;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -145,6 +157,19 @@ public class PersistenciaParranderos
 		tablas.add ("A_GUSTAN");
 		tablas.add ("A_SIRVEN");
 		tablas.add ("A_VISITAN");
+		tablas.add("super_andes_it2");
+		tablas.add("A_USUARIO");
+		tablas.add("A_PROMOCION");
+		tablas.add("A_PRODUCTO");
+		tablas.add("A_PEDIDO");
+		tablas.add("A_PROVEEDOR");
+		tablas.add("A_COMPRADOR");
+		tablas.add("A_FACTURA");
+		tablas.add("A_COMPRA");
+		tablas.add("A_CATEGORIA");
+		tablas.add("A_CONTENEDOR");
+		tablas.add("A_SUPERMERCADO");
+		tablas.add("A_SUCURSAL");
 }
 
 	/**
@@ -227,7 +252,14 @@ public class PersistenciaParranderos
 		sqlSirven = new SQLSirven (this);
 		sqlVisitan = new SQLVisitan(this);		
 		sqlUtil = new SQLUtil(this);
-	}
+		sqlUsuario = new SQLUsuario(this);
+		sqlPromocion = new SQLPromocion(this);
+		sqlProducto = new SQLProducto(this);
+		sqlFactura = new SQLFactura(this);
+		sqlCompra = new SQLCompra(this);
+		sqlCategoria = new SQLCategoria(this);
+
+		}
 
 	/**
 	 * @return La cadena de caracteres con el nombre del secuenciador de parranderos
@@ -293,6 +325,15 @@ public class PersistenciaParranderos
 		return tablas.get (7);
 	}
 	
+	public String darSeqSuperAndes()
+	{
+		return tablas.get(10);
+	}
+
+	public String darTablaUsuario()
+	{
+		return tablas.get(9);
+	}
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
 	 * Adiciona entradas al log de la aplicación
@@ -456,6 +497,8 @@ public class PersistenciaParranderos
 	{
 		return sqlTipoBebida.darTipoBebidaPorId (pmf.getPersistenceManager(), idTipoBebida);
 	}
+
+
  
 	/* ****************************************************************
 	 * 			Métodos para manejar las BEBIDAS
