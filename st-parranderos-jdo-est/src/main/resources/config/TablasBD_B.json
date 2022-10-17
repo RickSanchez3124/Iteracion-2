@@ -3,13 +3,18 @@
 	"unidadPersistencia": "Parranderos",
 	"tablas":
 	[
-		"Parranderos_sequence",
-		"B_TIPOBEBIDA",
-		"B_BEBIDA",
-		"B_BAR",
-		"B_BEBEDOR",
-		"B_GUSTAN",
-		"B_SIRVEN",
-		"B_VISITAN"
+		"super_andes_it2",
+		"A_USUARIO",
+		"A_PROMOCION",
+		"A_PRODUCTO",
+		"A_PEDIDO",
+		"A_PROVEEDOR",
+		"A_COMPRADOR",
+		"A_FACTURA",
+		"A_COMPRA",
+		"A_CATEGORIA",
+		"A_CONTENEDOR",
+		"A_SUPERMERCADO",
+		"A_SUCURSAL"
 	]
 }
