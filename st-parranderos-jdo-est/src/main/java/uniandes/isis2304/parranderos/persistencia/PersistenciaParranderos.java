@@ -382,6 +382,30 @@ public class PersistenciaParranderos
 	{
 		return tablas.get(17);
 	}
+	public String darTablaPedido()
+	{
+		return tablas.get(18);
+	}
+	public String darTablaProveedor()
+	{
+		return tablas.get(19);
+	}
+	public String darTablaComprador()
+	{
+		return tablas.get(20);
+	}
+	public String darTablaContenedor()
+	{
+		return tablas.get(21);
+	}
+	public String darTablaSupermercado()
+	{
+		return tablas.get(22);
+	}
+	public String darTablaSucursal()
+	{
+		return tablas.get(23);
+	}
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
 	 * Adiciona entradas al log de la aplicación
