@@ -18,21 +18,21 @@ public class SQLPromocion {
 
     public long adicionarPromocion (PersistenceManager pm, long tipo)
     {
-        Query q  = pm.newQuery(SQL, "INSERT INTO " + "(TIPO) values (?)");
+        Query q  = pm.newQuery(SQL, "INSERT INTO "+ pp.darTablaPromocion() + "(TIPO) values (?)");
         q.setParameters(tipo);
         return(long) q.executeUnique();
     }
 
     public long eliminarPromocion (PersistenceManager pm, long tipo)
     {
-        Query q = pm.newQuery(SQL, "DELTE FROM" + "WHERE TIPO = ?");
+        Query q = pm.newQuery(SQL, "DELTE FROM" + pp.darTablaPromocion() + "WHERE TIPO = ?");
         q.setParameters(tipo);
         return (long) q.executeUnique();
     }
 
     public Promocion darPromocion(PersistenceManager pm, long tipo)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM " + "WHERE TIPO = ?");
+        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPromocion() + "WHERE TIPO = ?");
         q.setResultClass(Promocion.class);
         q.setParameters(tipo);
         return (Promocion) q.executeUnique();
@@ -40,7 +40,7 @@ public class SQLPromocion {
 
     public List<Promocion> darPromociones (PersistenceManager pm)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM");
+        Query q = pm.newQuery(SQL, "SELECT * FROM" + pp.darTablaPromocion());
         q.setResultClass(Promocion.class);
         return (List<Promocion>) q.executeList();
     }

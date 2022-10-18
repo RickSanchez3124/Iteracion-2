@@ -17,21 +17,21 @@ public class SQLCompra {
 
     public long adicionarCompra(PersistenceManager pm, long idCompra, Date fechaFactura, String nombreProducto)
     {
-        Query q = pm.newQuery(SQL, "INSERT INTO " + "(id, fecha_factura, nombre_prodcuto) values (?,?,?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCompra() + "(id, fecha_factura, nombre_prodcuto) values (?,?,?)");
         q.setParameters(idCompra,fechaFactura,nombreProducto);
         return (long) q.executeUnique();
     }
 
     public long eliminarCompraPorId(PersistenceManager pm, long idCompra)
     {
-        Query q = pm.newQuery(SQL, "DELETE FROM " + "WHERE id = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCompra() + "WHERE id = ?");
         q.setParameters(idCompra);
         return (long) q.executeUnique();
     }
 
     public Compra darCompraPorId (PersistenceManager pm, long idCompra)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM " + "WHERE id = ?");
+        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCompra() + "WHERE id = ?");
         q.setResultClass(Compra.class);
         q.setParameters(idCompra);
         return (Compra) q.executeUnique();
@@ -39,7 +39,7 @@ public class SQLCompra {
 
     public List<Compra> darCompras (PersistenceManager pm)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM " + "WHERE id = ?");
+        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCompra());
         q.setResultClass(Compra.class);
         return (List<Compra>) q.executeList();
     }
