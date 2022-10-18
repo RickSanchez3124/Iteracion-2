@@ -38,6 +38,12 @@ import uniandes.isis2304.parranderos.negocio.Gustan;
 import uniandes.isis2304.parranderos.negocio.Sirven;
 import uniandes.isis2304.parranderos.negocio.TipoBebida;
 import uniandes.isis2304.parranderos.negocio.Visitan;
+import uniandes.isis2304.parranderos.negocio.Pedido;
+import uniandes.isis2304.parranderos.negocio.Proveedor;
+import uniandes.isis2304.parranderos.negocio.Comprador;
+import uniandes.isis2304.parranderos.negocio.Contenedor;
+import uniandes.isis2304.parranderos.negocio.Supermercado;
+import uniandes.isis2304.parranderos.negocio.Sucursal;
 
 /**
  * Clase para el manejador de persistencia del proyecto Parranderos
