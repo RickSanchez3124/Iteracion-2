@@ -86,7 +86,7 @@ class SQLProveedor
 	 */
 	public Proveedor darProveedorPorNit (PersistenceManager pm, long nit) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaProvveedor () + " WHERE nit = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaProveedor () + " WHERE nit = ?");
 		q.setResultClass(Proveedor.class);
 		q.setParameters(nit);
 		return (Proveedor) q.executeUnique();
