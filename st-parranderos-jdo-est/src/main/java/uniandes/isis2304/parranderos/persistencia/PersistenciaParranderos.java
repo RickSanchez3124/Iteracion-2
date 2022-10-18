@@ -140,6 +140,18 @@ public class PersistenciaParranderos
 	private SQLCompra sqlCompra;
 
 	private SQLCategoria sqlCategoria;
+
+	private SQLPedido sqlPedido;
+
+	private SQLProveedor sqlProveedor;
+
+	private SQLComprador sqlComprador;
+
+	private SQLContenedor sqlContenedor;
+
+	private SQLSupermercado sqlSupermercado;
+
+	private SQLSucursal sqlSucursal;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -264,6 +276,12 @@ public class PersistenciaParranderos
 		sqlFactura = new SQLFactura(this);
 		sqlCompra = new SQLCompra(this);
 		sqlCategoria = new SQLCategoria(this);
+		sqlPedido = new SQLPedido(this);
+		sqlProveedor = new SQLProveedor(this);
+		sqlComprador = new SQLComprador(this);
+		sqlContenedor = new SQLContenedor(this);
+		sqlSupermercado = new SQLSupermercado(this);
+		sqlSucursal = new SQLSucursal(this);
 
 		}
 
