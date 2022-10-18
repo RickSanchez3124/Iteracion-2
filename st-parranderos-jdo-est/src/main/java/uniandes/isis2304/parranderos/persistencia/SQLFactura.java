@@ -17,21 +17,21 @@ public class SQLFactura {
 
     public Date adicionarFactura(PersistenceManager pm, Date fecha, String nombreComprador)
     {
-        Query q = pm.newQuery(SQL, "INSERT INTO " + "(FECHA, NOMBRE_COMPRADOR) values (?,?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaFactura() + "(FECHA, NOMBRE_COMPRADOR) values (?,?)");
         q.setParameters(fecha, nombreComprador);
         return (Date) q.executeUnique();
     }
 
     public Date eliminarFacturaPorFecha(PersistenceManager pm, Date fecha)
     {
-        Query q = pm.newQuery(SQL, "DELETE FROM" + "WHERE fecha = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaFactura() + "WHERE fecha = ?");
         q.setParameters(fecha);
         return (Date) q.executeUnique();
     }
 
     public Factura darFacturaPorFecha(PersistenceManager pm, Date fecha)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM" + "WHERE factura = ?");
+        Query q = pm.newQuery(SQL, "SELECT * FROM" + pp.darTablaFactura() + "WHERE factura = ?");
         q.setResultClass(Factura.class);
         q.setParameters(fecha);
         return(Factura) q.executeUnique();
@@ -39,7 +39,7 @@ public class SQLFactura {
 
     public List<Factura> darFacturasPorFecha(PersistenceManager pm, Date fecha)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM" + "WHERE factura = ?");
+        Query q = pm.newQuery(SQL, "SELECT * FROM" + pp.darTablaFactura() + "WHERE factura = ?");
         q.setResultClass(Factura.class);
         q.setParameters(fecha);
         return(List<Factura>) q.executeList();
@@ -47,7 +47,7 @@ public class SQLFactura {
 
     public List<Factura> darFacturas(PersistenceManager pm)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM" );
+        Query q = pm.newQuery(SQL, "SELECT * FROM" + pp.darTablaFactura() );
         q.setResultClass(Factura.class);
         return(List<Factura>) q.executeList();
     }

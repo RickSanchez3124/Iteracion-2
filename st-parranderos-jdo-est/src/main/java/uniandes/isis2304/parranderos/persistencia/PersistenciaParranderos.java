@@ -351,12 +351,36 @@ public class PersistenciaParranderos
 	
 	public String darSeqSuperAndes()
 	{
-		return tablas.get(10);
+		return tablas.get(8);
 	}
 
 	public String darTablaUsuario()
 	{
 		return tablas.get(9);
+	}
+
+	public String darTablaPromocion()
+	{
+		return tablas.get(10);
+	}
+
+	public String darTablaProducto()
+	{
+		return tablas.get(11);
+	}
+
+	public String darTablaFactura()
+	{
+		return tablas.get(15);
+	}
+
+	public String darTablaCompra()
+	{
+		return tablas.get(16);
+	}
+	public String darTablaCategoria()
+	{
+		return tablas.get(17);
 	}
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
