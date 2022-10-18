@@ -14,23 +14,23 @@ public class SQLCategoria {
 		this.pp = pp;
 	}
 
-    public String adicionarCateogira (PersistenceManager pm, String  tipo, String nombreProducto) 
+    public String adicionarCategoria (PersistenceManager pm, String  tipo, String nombreProducto) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " +  "(tipo, nombre_producto) values (?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCategoria() + "(tipo, nombre_producto) values (?, ?)");
         q.setParameters(tipo, nombreProducto);
         return (String) q.executeUnique();
 	}
 
     public String eliminarCategoriaPorTipo (PersistenceManager pm, String  tipo)
     {
-        Query q = pm.newQuery(SQL, "DELETE FROM " +  "WHERE tipo = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCategoria() +  "WHERE tipo = ?");
         q.setParameters(tipo);
         return (String) q.executeUnique();
     }
 
     public Categoria darCategoriaPorTipo (PersistenceManager pm, String  tipo)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM " +  "WHERE tipo = ?");
+        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCategoria() +  "WHERE tipo = ?");
         q.setResultClass(Categoria.class);
         q.setParameters(tipo);
         return (Categoria) q.executeUnique();
@@ -38,7 +38,7 @@ public class SQLCategoria {
 
     public List<Categoria> darCategoriasPorTipo (PersistenceManager pm, String  tipo)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM " +  "WHERE tipo = ?");
+        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCategoria() +  "WHERE tipo = ?");
         q.setResultClass(Categoria.class);
         q.setParameters(tipo);
         return (List<Categoria>) q.executeList();
@@ -46,7 +46,7 @@ public class SQLCategoria {
 
     public List<Categoria> darCategorias (PersistenceManager pm)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM " +  "WHERE tipo = ?");
+        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCategoria() +  "WHERE tipo = ?");
         q.setResultClass(Categoria.class);
         return (List<Categoria>) q.executeList();
     }
