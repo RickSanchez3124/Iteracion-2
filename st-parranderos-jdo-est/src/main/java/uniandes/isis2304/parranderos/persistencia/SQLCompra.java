@@ -25,6 +25,7 @@ public class SQLCompra {
     public long eliminarCompraPorId(PersistenceManager pm, long idCompra)
     {
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCompra() + "WHERE id = ?");
+        q.setResultClass(Compra.class);
         q.setParameters(idCompra);
         return (long) q.executeUnique();
     }
