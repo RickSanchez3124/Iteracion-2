@@ -33,7 +33,7 @@ class SQLUtil
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-	private final static String SQL = PersistenciaParranderos.SQL;
+	private final static String SQL = PersistenciaSuperandes.SQL;
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -41,7 +41,7 @@ class SQLUtil
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private PersistenciaParranderos pp;
+	private PersistenciaSuperandes pp;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -51,7 +51,7 @@ class SQLUtil
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLUtil (PersistenciaParranderos pp)
+	public SQLUtil (PersistenciaSuperandes pp)
 	{
 		this.pp = pp;
 	}
@@ -72,28 +72,40 @@ class SQLUtil
 	/**
 	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 
 	 * @param pm - El manejador de persistencia
-	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
-	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
+	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas Factura, Categoria, Compra, Comprador,
+	 * Contenedor, Pedido y BAR, respectivamente
 	 */
-	public long [] limpiarParranderos (PersistenceManager pm)
+	public long [] limpiarSuperAndes (PersistenceManager pm)
 	{
-        Query qGustan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGustan ());          
-        Query qSirven = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSirven ());
-        Query qVisitan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan ());
-        Query qBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebida ());
-        Query qTipoBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoBebida ());
-        Query qBebedor = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebedor ());
-        Query qBar = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBar ());
+        Query qFactura = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaFactura());          
+        Query qCategoria = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCategoria ());
+        Query qCompra = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCompra ());
+        Query qComprador = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaComprador ());
+        Query qContenedor = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaContenedor ());
+        Query qPedido = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaPedido ());
+        Query qProducto = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaProducto ());
+		Query qPromocion = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaPromocion());
+		Query qProveedor = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaProveedor());
+		Query qSucursal = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaSucursal());
+		Query qSupermercado = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaSupermercado());
+		Query qUsuario = pm.newQuery(SQL, "DELETE FROM" +pp.darTablaUsuario());
 
-        long gustanEliminados = (long) qGustan.executeUnique ();
-        long sirvenEliminados = (long) qSirven.executeUnique ();
-        long visitanEliminadas = (long) qVisitan.executeUnique ();
-        long bebidasEliminadas = (long) qBebida.executeUnique ();
-        long tiposBebidaEliminados = (long) qTipoBebida.executeUnique ();
-        long bebedoresEliminados = (long) qBebedor.executeUnique ();
-        long baresEliminados = (long) qBar.executeUnique ();
-        return new long[] {gustanEliminados, sirvenEliminados, visitanEliminadas, bebidasEliminadas, 
-        		tiposBebidaEliminados, bebedoresEliminados, baresEliminados};
+        long facturaEliminados = (long) qFactura.executeUnique ();
+        long categoriaEliminados = (long) qCategoria.executeUnique ();
+        long compraEliminadas = (long) qCompra.executeUnique ();
+        long compradorsEliminadas = (long) qComprador.executeUnique ();
+        long contenedorEliminados = (long) qContenedor.executeUnique ();
+        long PedidoesEliminados = (long) qPedido.executeUnique ();
+        long productosEliminados = (long) qProducto.executeUnique ();
+		long promocionEliminados = (long) qPromocion.executeUnique();
+		long proveedorEliminados = (long) qProveedor.executeUnique();
+		long sucursalEliminadas = (long) qSucursal.executeUnique();
+		long supermercadoEliminados = (long) qSupermercado.executeUnique();
+		long usuarioEliminados = (long) qUsuario.executeUnique();
+
+        return new long[] {facturaEliminados, categoriaEliminados, compraEliminadas, compradorsEliminadas, 
+        		contenedorEliminados, PedidoesEliminados, productosEliminados, promocionEliminados, proveedorEliminados,
+				sucursalEliminadas, supermercadoEliminados, usuarioEliminados};
 	}
 
 }
