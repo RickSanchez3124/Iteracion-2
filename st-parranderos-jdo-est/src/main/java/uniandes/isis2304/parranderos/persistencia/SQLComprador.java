@@ -37,11 +37,7 @@ class SQLComprador
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-<<<<<<< HEAD
-	private final static String SQL = PersistenciaSuperAndes.SQL;
-=======
 	private final static String SQL = PersistenciaSuperandes.SQL;
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -49,11 +45,7 @@ class SQLComprador
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-<<<<<<< HEAD
-	private PersistenciaSuperAndes pp;
-=======
 	private PersistenciaSuperandes pp;
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -63,11 +55,7 @@ class SQLComprador
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-<<<<<<< HEAD
-	public SQLComprador (PersistenciaSuperAndes pp)
-=======
 	public SQLComprador (PersistenciaSuperandes pp)
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 	{
 		this.pp = pp;
 	}
@@ -91,7 +79,7 @@ class SQLComprador
 
 	public long eliminarClientePorId(PersistenceManager pm, long id_doc)
     {
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCliente () + " WHERE id_doc = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaComprador () + " WHERE id_doc = ?");
         q.setParameters(id_doc);
         return (long) q.executeUnique();
     }

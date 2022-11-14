@@ -129,7 +129,7 @@ class SQLContenedor
 
 	public long actualizarCapacidad (PersistenceManager pm, long capacidad, long id)
 	{
-        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaEstante () + " SET capacidad = ?  WHERE id = ?");
+        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaContenedor () + " SET capacidad = ?  WHERE id = ?");
         q.setParameters(capacidad, id);
         return (long) q.executeUnique();
 	}

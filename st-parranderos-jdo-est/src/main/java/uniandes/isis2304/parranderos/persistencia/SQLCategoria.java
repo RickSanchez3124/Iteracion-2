@@ -16,7 +16,7 @@ public class SQLCategoria {
 
     public String adicionarCategoria (PersistenceManager pm, String  tipo, String nombreProducto) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCategoria() + "(tipo, nombre_producto) values (?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCategoria() + "(tipo, nombreProducto) values (?, ?)");
         q.setParameters(tipo, nombreProducto);
         return (String) q.executeUnique();
 	}
