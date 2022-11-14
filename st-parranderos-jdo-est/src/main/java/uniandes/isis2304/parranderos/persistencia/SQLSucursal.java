@@ -37,7 +37,7 @@ class SQLSucursal
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-	private final static String SQL = PersistenciaParranderos.SQL;
+	private final static String SQL = PersistenciaSuperAndes.SQL;
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -45,7 +45,7 @@ class SQLSucursal
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private PersistenciaParranderos pp;
+	private PersistenciaSuperAndes pp;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -55,7 +55,7 @@ class SQLSucursal
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLSucursal (PersistenciaParranderos pp)
+	public SQLSucursal (PersistenciaSuperAndes pp)
 	{
 		this.pp = pp;
 	}
@@ -76,6 +76,13 @@ class SQLSucursal
         q.setParameters(nombre, direccion, ciudad, nombre_supermercado, id_contenedor, id_compra, documento_usuario);
         return (long) q.executeUnique();
 	}
+
+	public long eliminarSucursalPorNombre(PersistenceManager pm, String nombre)
+    {
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSucursal () + " WHERE nombre = ?");
+        q.setParameters(nombre);
+        return (long) q.executeUnique();
+    }
 
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN BAR de la 

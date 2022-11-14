@@ -37,7 +37,7 @@ class SQLProveedor
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-	private final static String SQL = PersistenciaParranderos.SQL;
+	private final static String SQL = PersistenciaSuperAndes.SQL;
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -45,7 +45,7 @@ class SQLProveedor
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private PersistenciaParranderos pp;
+	private PersistenciaSuperAndes pp;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -55,7 +55,7 @@ class SQLProveedor
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLProveedor (PersistenciaParranderos pp)
+	public SQLProveedor (PersistenciaSuperAndes pp)
 	{
 		this.pp = pp;
 	}
@@ -84,10 +84,9 @@ class SQLProveedor
 	 * @param idBar - El identificador del bar
 	 * @return El objeto BAR que tiene el identificador dado
 	 */
-	public Proveedor darProveedorPorNit (PersistenceManager pm, long nit) 
+	public Proveedor eliminarProveedorPorNit (PersistenceManager pm, long nit) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaProveedor () + " WHERE nit = ?");
-		q.setResultClass(Proveedor.class);
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaProveedor () + " WHERE nit = ?");
 		q.setParameters(nit);
 		return (Proveedor) q.executeUnique();
 	}
@@ -99,12 +98,12 @@ class SQLProveedor
 	 * @param nombreBar - El nombre de bar buscado
 	 * @return Una lista de objetos BAR que tienen el nombre dado
 	 */
-	public List<Proveedor> darProveedoresPorNombre(PersistenceManager pm, String nombre) 
+	public Proveedor darProveedorPorNit(PersistenceManager pm, long nit) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaProveedor () + " WHERE nombre = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaProveedor () + " WHERE nit = ?");
 		q.setResultClass(Proveedor.class);
-		q.setParameters(nombre);
-		return (List<Proveedor>) q.executeList();
+		q.setParameters(nit);
+		return (Proveedor) q.executeUnique();
 	}
 
 	/**

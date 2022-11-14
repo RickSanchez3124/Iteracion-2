@@ -8,34 +8,34 @@ import javax.jdo.Query;
 
 public class SQLProducto {
 
-    private final static String SQL = PersistenciaParranderos.SQL;
+    private final static String SQL = PersistenciaSuperAndes.SQL;
 
-    private PersistenciaParranderos pp;
+    private PersistenciaSuperAndes pp;
 
-    public SQLProducto(PersistenciaParranderos pp)
+    public SQLProducto(PersistenciaSuperAndes pp)
     {
         this.pp= pp;
     }
 
-    public String adicionarProducto (PersistenceManager pm, String nombre, String marca, long precio, String presentacion, long precio_unimed, long cantidadP, String unimed, String esp_empacado, String codBarra, long promocion)
+    public String adicionarProducto (PersistenceManager pm, String nombre, String marca, long precioU, String presentacion, long precioUnimed, long cantidadPresente, String unimed, String espEmpacado, String codBarra, long promocion)
     {
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaProducto() + "(NOMBRE,MARCA,PRECIO_U,PRESENTACION, PRECIO_UNIMED,CANTIDAD_PRESENTE, UNIMED, ESP_EMAPCADO, COD_BARRA, PROMOCION) value (?,?,?,?,?,?,?,?,?,?)");
-        q.setParameters(nombre,marca,precio,presentacion,precio_unimed,cantidadP,unimed,esp_empacado,codBarra,promocion);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaProducto() + "(nombre,marca,precioU,presentacion, precioUnimed,cantidadPresente, unimed, espEmpacado, codBarra, promocion) value (?,?,?,?,?,?,?,?,?,?)");
+        q.setParameters(nombre,marca,precioU,presentacion,precioUnimed,cantidadPresente,unimed,espEmpacado,codBarra,promocion);
         return (String) q.executeUnique();
     }
     
-    public String eliminarProductoPorNombre (PersistenceManager pm, String nombre)
+    public String eliminarProductoPorCodBarras (PersistenceManager pm, String codBarra)
     {
-        Query q = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaProducto() + "WHERE nombre =?");
-        q.setParameters(nombre);
+        Query q = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaProducto() + "WHERE codBarra =?");
+        q.setParameters(codBarra);
         return (String) q.executeUnique();
     }
 
-    public Producto darProductoPorNombre (PersistenceManager pm, String nombre)
+    public Producto darProductoPorCodBarras (PersistenceManager pm, String codBarra)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM" + pp.darTablaProducto() + "WHERE NOMBRE = ?");
+        Query q = pm.newQuery(SQL, "SELECT * FROM" + pp.darTablaProducto() + "WHERE codBarra = ?");
         q.setResultClass(Producto.class);
-        q.setParameters(nombre);
+        q.setParameters(codBarra);
         return (Producto) q.executeUnique();
     }
 
@@ -45,4 +45,19 @@ public class SQLProducto {
         q.setResultClass(Producto.class);
         return (List<Producto>) q.executeList();
     }
+
+    public List<Contenedor> darContenedoresPorProducto(PersistenceManager pm, long idContenedor)
+    {
+        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaContenedor() + " WHERE id = ?");
+        q.setResultClass(Contenedor.class);
+        q.setParameters(idContenedor);
+        return (List<Contenedor>) q.executeUnique();
+    }
+
+    public long actualizarPrecioUnidad (PersistenceManager pm, Integer nuevoPrecio, String codBarra)
+	{
+        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaProducto () + " SET precioU = ?  WHERE codBarra = ?");
+        q.setParameters(nuevoPrecio, codBarra);
+        return (long) q.executeUnique();
+	}
 }

@@ -37,7 +37,7 @@ class SQLSupermercado
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-	private final static String SQL = PersistenciaParranderos.SQL;
+	private final static String SQL = PersistenciaSuperAndes.SQL;
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -45,7 +45,7 @@ class SQLSupermercado
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private PersistenciaParranderos pp;
+	private PersistenciaSuperAndes pp;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -55,7 +55,7 @@ class SQLSupermercado
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLSupermercado (PersistenciaParranderos pp)
+	public SQLSupermercado (PersistenciaSuperAndes pp)
 	{
 		this.pp = pp;
 	}
@@ -76,6 +76,13 @@ class SQLSupermercado
         q.setParameters(nombre, nit_proveedor);
         return (long) q.executeUnique();
 	}
+
+	public String eliminarSupermercadoPorNombre(PersistenceManager pm, String nombre)
+    {
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSupermercado () + " WHERE nombre = ?");
+        q.setParameters(nombre);
+        return (String) q.executeUnique();
+    }
 
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN BAR de la 

@@ -8,31 +8,31 @@ import java.util.List;
 public class SQLPromocion {
 
 
-    private final static String SQL = PersistenciaParranderos.SQL;
-    private PersistenciaParranderos pp;
+    private final static String SQL = PersistenciaSuperAndes.SQL;
+    private PersistenciaSuperAndes pp;
     
-    public SQLPromocion (PersistenciaParranderos pp)
+    public SQLPromocion (PersistenciaSuperAndes pp)
     {
         this.pp = pp;
     }
 
     public long adicionarPromocion (PersistenceManager pm, long tipo)
     {
-        Query q  = pm.newQuery(SQL, "INSERT INTO "+ pp.darTablaPromocion() + "(TIPO) values (?)");
+        Query q  = pm.newQuery(SQL, "INSERT INTO "+ pp.darTablaPromocion() + "(tipo) values (?)");
         q.setParameters(tipo);
         return(long) q.executeUnique();
     }
 
     public long eliminarPromocion (PersistenceManager pm, long tipo)
     {
-        Query q = pm.newQuery(SQL, "DELTE FROM" + pp.darTablaPromocion() + "WHERE TIPO = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaPromocion() + "WHERE tipo = ?");
         q.setParameters(tipo);
         return (long) q.executeUnique();
     }
 
     public Promocion darPromocion(PersistenceManager pm, long tipo)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPromocion() + "WHERE TIPO = ?");
+        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPromocion() + "WHERE tipo = ?");
         q.setResultClass(Promocion.class);
         q.setParameters(tipo);
         return (Promocion) q.executeUnique();

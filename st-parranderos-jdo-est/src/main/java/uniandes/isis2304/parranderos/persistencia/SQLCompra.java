@@ -7,34 +7,33 @@ import javax.jdo.Query;
 
 public class SQLCompra {
 
-    private final static String SQL = PersistenciaParranderos.SQL;
-    private PersistenciaParranderos pp;
+    private final static String SQL = PersistenciaSuperAndes.SQL;
+    private PersistenciaSuperAndes pp;
 
-    public SQLCompra(PersistenciaParranderos pp )
+    public SQLCompra(PersistenciaSuperAndes pp )
     {
         this.pp = pp;
     }
 
-    public long adicionarCompra(PersistenceManager pm, long idCompra, Date fechaFactura, String nombreProducto)
+    public long adicionarCompra(PersistenceManager pm, long id, Date fecha, String nombreProducto)
     {
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCompra() + "(id, fecha_factura, nombre_prodcuto) values (?,?,?)");
-        q.setParameters(idCompra,fechaFactura,nombreProducto);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCompra() + "(id, fecha, nombreProducto) values (?,?,?)");
+        q.setParameters(id,fecha,nombreProducto);
         return (long) q.executeUnique();
     }
 
-    public long eliminarCompraPorId(PersistenceManager pm, long idCompra)
+    public long eliminarCompraPorId(PersistenceManager pm, long id)
     {
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCompra() + "WHERE id = ?");
-        q.setResultClass(Compra.class);
-        q.setParameters(idCompra);
+        q.setParameters(id);
         return (long) q.executeUnique();
     }
 
-    public Compra darCompraPorId (PersistenceManager pm, long idCompra)
+    public Compra darCompraPorId (PersistenceManager pm, long id)
     {
         Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCompra() + "WHERE id = ?");
         q.setResultClass(Compra.class);
-        q.setParameters(idCompra);
+        q.setParameters(id);
         return (Compra) q.executeUnique();
     }
 
@@ -43,6 +42,14 @@ public class SQLCompra {
         Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCompra());
         q.setResultClass(Compra.class);
         return (List<Compra>) q.executeList();
+    }
+
+    public List<Compra> darComprasIgual(PersistenceManager pm, Date fecha, String nombreProducto )
+    {
+        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCompra () + " WHERE fechaFactura = ? AND nombreProducto=?");
+        q.setResultClass(Compra.class);
+        q.setParameters(fecha, nombreProducto);
+        return (List<Compra>) q.executeUnique();
     }
 
 }

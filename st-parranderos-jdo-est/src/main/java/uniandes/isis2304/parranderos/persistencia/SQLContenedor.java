@@ -37,7 +37,7 @@ class SQLContenedor
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-	private final static String SQL = PersistenciaParranderos.SQL;
+	private final static String SQL = PersistenciaSuperAndes.SQL;
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -45,7 +45,7 @@ class SQLContenedor
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private PersistenciaParranderos pp;
+	private PersistenciaSuperAndes pp;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -55,7 +55,7 @@ class SQLContenedor
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLContenedor (PersistenciaParranderos pp)
+	public SQLContenedor (PersistenciaSuperAndes pp)
 	{
 		this.pp = pp;
 	}
@@ -76,6 +76,13 @@ class SQLContenedor
         q.setParameters(id, tipo, capacidad, categoria);
         return (long) q.executeUnique();
 	}
+
+	public long eliminarContenedorPorId(PersistenceManager pm, long id)
+    {
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaContenedor () + " WHERE id = ?");
+        q.setParameters(id);
+        return (long) q.executeUnique();
+    }
 
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN BAR de la 
@@ -118,6 +125,13 @@ class SQLContenedor
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaContenedor ());
 		q.setResultClass(Contenedor.class);
 		return (List<Contenedor>) q.executeList();
+	}
+
+	public long actualizarCapacidad (PersistenceManager pm, long capacidad, long id)
+	{
+        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaEstante () + " SET capacidad = ?  WHERE id = ?");
+        q.setParameters(capacidad, id);
+        return (long) q.executeUnique();
 	}
 	
 }
