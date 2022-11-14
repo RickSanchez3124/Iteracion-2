@@ -606,4 +606,17 @@ public class superandes {
         log.info ("Generando los VO de pedidos: " + voPedido.size() + " existentes");
         return voPedido;
     }
+
+    /* ****************************************************************
+     *          Métodos para administración
+     *****************************************************************/
+
+    public long [] limpiarParranderos ()
+    {
+        log.info ("Limpiando la BD de Parranderos");
+        long [] borrados = pp.limpiarSuperandes();    
+        log.info ("Limpiando la BD de Parranderos: Listo!");
+        return borrados;
+    }
+
 }
