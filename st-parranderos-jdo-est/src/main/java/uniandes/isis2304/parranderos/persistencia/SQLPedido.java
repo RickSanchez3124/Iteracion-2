@@ -37,11 +37,7 @@ class SQLPedido
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-<<<<<<< HEAD
-	private final static String SQL = PersistenciaSuperAndes.SQL;
-=======
 	private final static String SQL = PersistenciaSuperandes.SQL;
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -49,11 +45,7 @@ class SQLPedido
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-<<<<<<< HEAD
-	private PersistenciaSuperAndes pp;
-=======
 	private PersistenciaSuperandes pp;
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -63,11 +55,7 @@ class SQLPedido
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-<<<<<<< HEAD
-	public SQLPedido (PersistenciaSuperAndes pp)
-=======
 	public SQLPedido (PersistenciaSuperandes pp)
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 	{
 		this.pp = pp;
 	}
@@ -89,7 +77,7 @@ class SQLPedido
         return (long) q.executeUnique();
 	}
 
-	public long eliminarPedido (PersistenceManager pm, String fecha_e)
+	public long eliminarPedidoPorFecha (PersistenceManager pm, String fecha_e)
    {
        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaPedido () + " WHERE fecha_e = ?");
        q.setParameters( fecha_e);
@@ -118,11 +106,11 @@ class SQLPedido
 	 * @param nombreBar - El nombre de bar buscado
 	 * @return Una lista de objetos BAR que tienen el nombre dado
 	 */
-	public List<Pedido> darPedidosPorNombre (PersistenceManager pm, String nombre) 
+	public List<Pedido> darPedidosPorFecha (PersistenceManager pm, String fecha_e) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPedido () + " WHERE nombre = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPedido () + " WHERE fecha_e = ?");
 		q.setResultClass(Pedido.class);
-		q.setParameters(nombre);
+		q.setParameters(fecha_e);
 		return (List<Pedido>) q.executeList();
 	}
 

@@ -14,18 +14,18 @@ public class SQLCategoria {
 		this.pp = pp;
 	}
 
-    public String adicionarCategoria (PersistenceManager pm, String  tipo, String nombreProducto) 
+    public long adicionarCategoria (PersistenceManager pm, String  tipo, String nombreProducto) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCategoria() + "(tipo, nombreProducto) values (?, ?)");
         q.setParameters(tipo, nombreProducto);
-        return (String) q.executeUnique();
+        return (long) q.executeUnique();
 	}
 
-    public String eliminarCategoriaPorTipo (PersistenceManager pm, String  tipo)
+    public long eliminarCategoriaPorTipo (PersistenceManager pm, String  tipo)
     {
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCategoria() +  "WHERE tipo = ?");
         q.setParameters(tipo);
-        return (String) q.executeUnique();
+        return (long) q.executeUnique();
     }
 
     public Categoria darCategoriaPorTipo (PersistenceManager pm, String  tipo)

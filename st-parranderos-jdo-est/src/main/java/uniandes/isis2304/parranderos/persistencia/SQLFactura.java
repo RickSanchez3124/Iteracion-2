@@ -7,33 +7,26 @@ import javax.jdo.Query;
 import uniandes.isis2304.parranderos.negocio.*;
 
 public class SQLFactura {
-<<<<<<< HEAD
-    private final static String SQL = PersistenciaSuperAndes.SQL;
-    private PersistenciaSuperAndes pp;
-
-    public SQLFactura(PersistenciaSuperAndes pp )
-=======
     private final static String SQL = PersistenciaSuperandes.SQL;
     private PersistenciaSuperandes pp;
 
     public SQLFactura(PersistenciaSuperandes pp )
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
     {
         this.pp = pp;
     }
 
-    public Date adicionarFactura(PersistenceManager pm, Date fecha, String nombreComprador)
+    public long adicionarFactura(PersistenceManager pm, Date fecha, String nombreComprador)
     {
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaFactura() + "(fecha, nombreComprador) values (?,?)");
         q.setParameters(fecha, nombreComprador);
-        return (Date) q.executeUnique();
+        return (long) q.executeUnique();
     }
 
-    public Date eliminarFacturaPorFecha(PersistenceManager pm, Date fecha)
+    public long eliminarFacturaPorFecha(PersistenceManager pm, Date fecha)
     {
         Query q = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaFactura() + "WHERE fecha = ?");
         q.setParameters(fecha);
-        return (Date) q.executeUnique();
+        return (long) q.executeUnique();
     }
 
     public Factura darFacturaPorFecha(PersistenceManager pm, Date fecha)

@@ -77,7 +77,7 @@ class SQLComprador
         return (long) q.executeUnique();
 	}
 
-	public long eliminarClientePorId(PersistenceManager pm, long id_doc)
+	public long eliminarCompradorPorId(PersistenceManager pm, long id_doc)
     {
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaComprador () + " WHERE id_doc = ?");
         q.setParameters(id_doc);
@@ -106,11 +106,11 @@ class SQLComprador
 	 * @param nombreBar - El nombre de bar buscado
 	 * @return Una lista de objetos BAR que tienen el nombre dado
 	 */
-	public List<Comprador> darCompradoresPorNombre (PersistenceManager pm, String nombre) 
+	public List<Comprador> darCompradoresPorNombre (PersistenceManager pm, String nombre_comprador) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaComprador () + " WHERE nombre = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaComprador () + " WHERE nombre_comprador = ?");
 		q.setResultClass(Comprador.class);
-		q.setParameters(nombre);
+		q.setParameters(nombre_comprador);
 		return (List<Comprador>) q.executeList();
 	}
 

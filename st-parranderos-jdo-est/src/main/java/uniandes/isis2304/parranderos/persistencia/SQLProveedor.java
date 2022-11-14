@@ -37,11 +37,7 @@ class SQLProveedor
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-<<<<<<< HEAD
-	private final static String SQL = PersistenciaSuperAndes.SQL;
-=======
 	private final static String SQL = PersistenciaSuperandes.SQL;
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -49,11 +45,7 @@ class SQLProveedor
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-<<<<<<< HEAD
-	private PersistenciaSuperAndes pp;
-=======
 	private PersistenciaSuperandes pp;
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -63,11 +55,7 @@ class SQLProveedor
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-<<<<<<< HEAD
-	public SQLProveedor (PersistenciaSuperAndes pp)
-=======
 	public SQLProveedor (PersistenciaSuperandes pp)
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 	{
 		this.pp = pp;
 	}
@@ -96,11 +84,11 @@ class SQLProveedor
 	 * @param idBar - El identificador del bar
 	 * @return El objeto BAR que tiene el identificador dado
 	 */
-	public Proveedor eliminarProveedorPorNit (PersistenceManager pm, long nit) 
+	public long eliminarProveedorPorNit (PersistenceManager pm, long nit) 
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaProveedor () + " WHERE nit = ?");
 		q.setParameters(nit);
-		return (Proveedor) q.executeUnique();
+		return (long) q.executeUnique();
 	}
 
 	/**
