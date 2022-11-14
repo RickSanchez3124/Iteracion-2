@@ -24,7 +24,7 @@ public class SQLProducto {
         return (long) q.executeUnique();
     }
     
-    public long eliminarProductoPorCodBarras (PersistenceManager pm, String codBarra)
+    public long eliminarProductoPorCodBarras(PersistenceManager pm, String codBarra)
     {
         Query q = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaProducto() + "WHERE codBarra =?");
         q.setParameters(codBarra);
