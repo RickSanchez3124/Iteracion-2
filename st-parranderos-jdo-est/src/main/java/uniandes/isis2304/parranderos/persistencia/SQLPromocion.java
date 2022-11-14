@@ -8,10 +8,10 @@ import java.util.List;
 public class SQLPromocion {
 
 
-    private final static String SQL = PersistenciaParranderos.SQL;
-    private PersistenciaParranderos pp;
+    private final static String SQL = PersistenciaSuperandes.SQL;
+    private PersistenciaSuperandes pp;
     
-    public SQLPromocion (PersistenciaParranderos pp)
+    public SQLPromocion (PersistenciaSuperandes pp)
     {
         this.pp = pp;
     }

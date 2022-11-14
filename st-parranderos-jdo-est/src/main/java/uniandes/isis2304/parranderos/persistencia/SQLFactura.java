@@ -7,10 +7,10 @@ import javax.jdo.Query;
 import uniandes.isis2304.parranderos.negocio.*;
 
 public class SQLFactura {
-    private final static String SQL = PersistenciaParranderos.SQL;
-    private PersistenciaParranderos pp;
+    private final static String SQL = PersistenciaSuperandes.SQL;
+    private PersistenciaSuperandes pp;
 
-    public SQLFactura(PersistenciaParranderos pp )
+    public SQLFactura(PersistenciaSuperandes pp )
     {
         this.pp = pp;
     }

@@ -8,11 +8,11 @@ import javax.jdo.Query;
 
 public class SQLProducto {
 
-    private final static String SQL = PersistenciaParranderos.SQL;
+    private final static String SQL = PersistenciaSuperandes.SQL;
 
-    private PersistenciaParranderos pp;
+    private PersistenciaSuperandes pp;
 
-    public SQLProducto(PersistenciaParranderos pp)
+    public SQLProducto(PersistenciaSuperandes pp)
     {
         this.pp= pp;
     }

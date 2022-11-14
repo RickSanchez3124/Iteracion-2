@@ -48,7 +48,7 @@ import uniandes.isis2304.parranderos.negocio.Sucursal;
  * 
  * @author Germán Bravo
  */
-public class PersistenciaParranderos 
+public class PersistenciaSuperandes 
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -56,7 +56,7 @@ public class PersistenciaParranderos
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(PersistenciaParranderos.class.getName());
+	private static Logger log = Logger.getLogger(PersistenciaSuperandes.class.getName());
 	
 	/**
 	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una consulta
@@ -69,7 +69,7 @@ public class PersistenciaParranderos
 	/**
 	 * Atributo privado que es el único objeto de la clase - Patrón SINGLETON
 	 */
-	private static PersistenciaParranderos instance;
+	private static PersistenciaSuperandes instance;
 	
 	/**
 	 * Fábrica de Manejadores de persistencia, para el manejo correcto de las transacciones
@@ -118,7 +118,7 @@ public class PersistenciaParranderos
 	/**
 	 * Constructor privado con valores por defecto - Patrón SINGLETON
 	 */
-	private PersistenciaParranderos ()
+	private PersistenciaSuperandes ()
 	{
 		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");		
 		crearClasesSQL ();
@@ -145,7 +145,7 @@ public class PersistenciaParranderos
 	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrón SINGLETON
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de la unidad de persistencia a manejar
 	 */
-	private PersistenciaParranderos (JsonObject tableConfig)
+	private PersistenciaSuperandes (JsonObject tableConfig)
 	{
 		crearClasesSQL ();
 		tablas = leerNombresTablas (tableConfig);
@@ -158,11 +158,11 @@ public class PersistenciaParranderos
 	/**
 	 * @return Retorna el único objeto PersistenciaParranderos existente - Patrón SINGLETON
 	 */
-	public static PersistenciaParranderos getInstance ()
+	public static PersistenciaSuperandes getInstance ()
 	{
 		if (instance == null)
 		{
-			instance = new PersistenciaParranderos ();
+			instance = new PersistenciaSuperandes ();
 		}
 		return instance;
 	}
@@ -172,11 +172,11 @@ public class PersistenciaParranderos
 	 * @param tableConfig - El objeto JSON con los nombres de las tablas
 	 * @return Retorna el único objeto PersistenciaParranderos existente - Patrón SINGLETON
 	 */
-	public static PersistenciaParranderos getInstance (JsonObject tableConfig)
+	public static PersistenciaSuperandes getInstance (JsonObject tableConfig)
 	{
 		if (instance == null)
 		{
-			instance = new PersistenciaParranderos (tableConfig);
+			instance = new PersistenciaSuperandes (tableConfig);
 		}
 		return instance;
 	}
@@ -376,6 +376,31 @@ public class PersistenciaParranderos
 			return je.getNestedExceptions() [0].getMessage();
 		}
 		return resp;
+	}
+
+	/** Limpiar base de datos */
+	public long [] limpiarSuperAndes(){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try 
+		{
+			tx.begin();
+			long [] resp = sqlUtil.limpiarSuperAndes(pm);
+			tx.commit();
+			log.info("La base de datos ha quedado borrada");
+			return resp;
+		}
+		catch(Exception e){
+			log.error("Exception : "+ e.getMessage() + "\n"+ darDetalleException(e));
+			return new long [] {-1, -1, -1, -1, -1, -1, -1};
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
 
 	/* ****************************************************************

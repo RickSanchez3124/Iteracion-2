@@ -7,12 +7,12 @@ import javax.jdo.Query;
 
 public class SQLUsuario {
 
-	private final static String SQL = PersistenciaParranderos.SQL;
+	private final static String SQL = PersistenciaSuperandes.SQL;
 
-	private PersistenciaParranderos pp;
+	private PersistenciaSuperandes pp;
 
 
-    public SQLUsuario (PersistenciaParranderos pp)
+    public SQLUsuario (PersistenciaSuperandes pp)
     {
         this.pp = pp;
     }

@@ -7,10 +7,10 @@ import javax.jdo.Query;
 
 public class SQLCompra {
 
-    private final static String SQL = PersistenciaParranderos.SQL;
-    private PersistenciaParranderos pp;
+    private final static String SQL = PersistenciaSuperandes.SQL;
+    private PersistenciaSuperandes pp;
 
-    public SQLCompra(PersistenciaParranderos pp )
+    public SQLCompra(PersistenciaSuperandes pp )
     {
         this.pp = pp;
     }
