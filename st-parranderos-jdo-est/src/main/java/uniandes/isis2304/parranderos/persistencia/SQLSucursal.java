@@ -37,7 +37,11 @@ class SQLSucursal
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
+<<<<<<< HEAD
 	private final static String SQL = PersistenciaSuperAndes.SQL;
+=======
+	private final static String SQL = PersistenciaSuperandes.SQL;
+>>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -45,7 +49,11 @@ class SQLSucursal
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
+<<<<<<< HEAD
 	private PersistenciaSuperAndes pp;
+=======
+	private PersistenciaSuperandes pp;
+>>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -55,7 +63,11 @@ class SQLSucursal
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
+<<<<<<< HEAD
 	public SQLSucursal (PersistenciaSuperAndes pp)
+=======
+	public SQLSucursal (PersistenciaSuperandes pp)
+>>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 	{
 		this.pp = pp;
 	}

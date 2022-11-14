@@ -6,10 +6,10 @@ import java.util.List;
 import uniandes.isis2304.parranderos.negocio.*;
 
 public class SQLCategoria {
-    private final static String SQL = PersistenciaParranderos.SQL;
-    private PersistenciaParranderos pp;
+    private final static String SQL = PersistenciaSuperandes.SQL;
+    private PersistenciaSuperandes pp;
 
-    public SQLCategoria (PersistenciaParranderos pp)
+    public SQLCategoria (PersistenciaSuperandes pp)
 	{
 		this.pp = pp;
 	}

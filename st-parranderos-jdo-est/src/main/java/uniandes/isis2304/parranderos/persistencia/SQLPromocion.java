@@ -8,10 +8,17 @@ import java.util.List;
 public class SQLPromocion {
 
 
+<<<<<<< HEAD
     private final static String SQL = PersistenciaSuperAndes.SQL;
     private PersistenciaSuperAndes pp;
     
     public SQLPromocion (PersistenciaSuperAndes pp)
+=======
+    private final static String SQL = PersistenciaSuperandes.SQL;
+    private PersistenciaSuperandes pp;
+    
+    public SQLPromocion (PersistenciaSuperandes pp)
+>>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
     {
         this.pp = pp;
     }
