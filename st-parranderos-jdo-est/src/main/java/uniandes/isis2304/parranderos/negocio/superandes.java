@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.*;
 import org.apache.*;
 import org.apache.log4j.Logger;
+import java.sql.Date;
 
 import com.google.gson.*;
 import uniandes.isis2304.parranderos.persistencia.*;
@@ -49,8 +50,8 @@ public class superandes {
     public long eliminarCategoriaPorTipo (String  tipo)
     {
         log.info ("Eliminando categoria por tipo: " + tipo);
-        long resp = pp.eliminarSucursalPorTipo (tipo);        
-        log.info ("Eliminando sucursal por tipo: " + resp + " tuplas eliminadas");
+        long resp = pp.eliminarCategoriaPorTipo (tipo);        
+        log.info ("Eliminando categoria por tipo: " + resp + " tuplas eliminadas");
         return resp;
     }
 
@@ -76,18 +77,6 @@ public class superandes {
         List<Categoria> categoria = pp.darCategorias ();    
         log.info ("Consultando categorias: " + categoria.size() + " existentes");
         return categoria;
-    }
-
-    public List<VOCategoria> darVOCategorias ()
-    {
-        log.info ("Generando los VO de categorias");        
-        List<VOCategoria> voCategoria = new LinkedList<VOCategoria> ();
-        for (Categoria tb : pp.darCategorias ())
-        {
-            voCategoria.add(tb);
-        }
-        log.info ("Generando los VO de categorias: " + voCategoria.size() + " existentes");
-        return voCategoria;
     }
 
       /* ****************************************************************
@@ -124,18 +113,6 @@ public class superandes {
         List<Compra> compra = pp.darComprasIgual (fecha,nombreProducto);
         log.info ("Buscando compras por fecha y nombre producto: " + fecha != null ? fecha : "NO EXISTE" + nombreProducto != null ? nombreProducto : "NO EXISTE");
         return compra;
-    }
-
-    public List<VOCompra> darVOCompras ()
-    {
-        log.info ("Generando los VO de compras");        
-        List<VOCompra> voCompra = new LinkedList<VOCompra> ();
-        for (Compra tb : pp.darCompras ())
-        {
-            voCompra.add(tb);
-        }
-        log.info ("Generando los VO de compras: " + voCompra.size() + " existentes");
-        return voCompra;
     }
 
       /* ****************************************************************
@@ -287,32 +264,12 @@ public class superandes {
         return factura;
     }
 
-    public List<Factura> darFacturasPorFecha (Date  fecha)
-    {
-        log.info ("Dar información de las facturas por fecha: " + fecha);
-        List<Factura> factura = pp.darFacturasPorFecha (factura);
-        log.info ("Buscando compradores por nombre: " + factura != null ? factura : "NO EXISTE");
-        return factura;
-    }
-
     public List<Factura> darFacturas ()
     {
         log.info ("Consultando facturas");
         List<Factura> factura = pp.darFacturas ();    
         log.info ("Consultando facturas: " + factura.size() + " existentes");
         return factura;
-    }
-
-    public List<VOFactura> darVOFacturas ()
-    {
-        log.info ("Generando los VO de facturas");        
-        List<VOFactura> voFactura = new LinkedList<VOFactura> ();
-        for (Factura tb : pp.darFacturas ())
-        {
-            voFactura.add(tb);
-        }
-        log.info ("Generando los VO de facturas: " + voFactura.size() + " existentes");
-        return voFactura;
     }
 
       /* ****************************************************************
@@ -327,7 +284,7 @@ public class superandes {
         return pedido;
     }
 
-    public long eliminarPedidoPorFecha (Date  fecha_e)
+    public long eliminarPedidoPorFecha (String  fecha_e)
     {
         log.info ("Eliminando pedido por fecha: " + fecha_e);
         long resp = pp.eliminarPedidoPorFecha (fecha_e);        
@@ -335,7 +292,7 @@ public class superandes {
         return resp;
     }
 
-    public Pedido darPedidoPorFecha (Date  fecha_e)
+    public Pedido darPedidoPorFecha (String  fecha_e)
     {
         log.info ("Dar información de un pedido por fecha: " + fecha_e);
         Pedido pedido = pp.darPedidoPorFecha (fecha_e);
@@ -343,10 +300,10 @@ public class superandes {
         return pedido;
     }
 
-    public List<Pedido> darPedidosPorNombre (String  nombre)
+    public List<Pedido> darPedidosPorFecha (String  fecha_e)
     {
-        log.info ("Dar información de los pedidos por nombre: " + nombre);
-        List<Pedido> pedidos = pp.darPedidosPorNombre (nombre);
+        log.info ("Dar información de los pedidos por fecha: " + fecha_e);
+        List<Pedido> pedidos = pp.darPedidosPorFecha (fecha_e);
         log.info ("Buscando pedidos por nombre: " + pedidos != null ? pedidos : "NO EXISTE");
         return pedidos;
     }
