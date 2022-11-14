@@ -4,5 +4,5 @@ public interface VORol {
     
     public String getNombre();
     public String getDescripcion();
-    public Integer getDocumento();
+    public long getDocumento();
 }

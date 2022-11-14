@@ -11,7 +11,7 @@ public class Rol implements VORol {
 
     private String nombre;
     private String descripcion;
-    private Integer documento;
+    private long documento;
 
     public Rol()
     {
@@ -21,7 +21,11 @@ public class Rol implements VORol {
 
     }
 
+<<<<<<< HEAD
     public Rol(String nombre, String descripcion, Integer documento)
+=======
+    public Rol(String nombre, String descripcion, long documento)
+>>>>>>> 09499b8a99999809a412b4ed28dcf1c457f53370
     {
         this.nombre = nombre;
         this.descripcion= descripcion;
@@ -48,12 +52,20 @@ public class Rol implements VORol {
         this.descripcion = descripcion;
     }
 
+<<<<<<< HEAD
     public Integer getDocumento()
+=======
+    public long getDocumento()
+>>>>>>> 09499b8a99999809a412b4ed28dcf1c457f53370
     {
         return documento;
     }
 
+<<<<<<< HEAD
     public void setDocumento(Integer documento)
+=======
+    public void setDocumento(long documento)
+>>>>>>> 09499b8a99999809a412b4ed28dcf1c457f53370
     {
         this.documento = documento;
     }
