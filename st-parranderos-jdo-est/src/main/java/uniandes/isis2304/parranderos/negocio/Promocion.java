@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Promocion {
+public class Promocion implements VOPromocion {
 
     private long tipo;
 

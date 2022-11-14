@@ -7,7 +7,7 @@ import java.util.List;
 import oracle.core.lmx.CoreException;
 
 
-public class Usuario {
+public class Usuario implements VOUsuario {
     
     private long documento;
     private String nombre;

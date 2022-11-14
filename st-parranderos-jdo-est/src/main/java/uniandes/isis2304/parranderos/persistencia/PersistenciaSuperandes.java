@@ -31,12 +31,8 @@ import org.apache.log4j.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import uniandes.isis2304.parranderos.negocio.Pedido;
-import uniandes.isis2304.parranderos.negocio.Proveedor;
-import uniandes.isis2304.parranderos.negocio.Comprador;
-import uniandes.isis2304.parranderos.negocio.Contenedor;
-import uniandes.isis2304.parranderos.negocio.Supermercado;
-import uniandes.isis2304.parranderos.negocio.Sucursal;
+
+import uniandes.isis2304.parranderos.negocio.*;
 
 /**
  * Clase para el manejador de persistencia del proyecto Parranderos
@@ -232,123 +228,63 @@ public class PersistenciaSuperandes
 	/**
 	 * @return La cadena de caracteres con el nombre del secuenciador de parranderos
 	 */
-	public String darSeqParranderos ()
-	{
-		return tablas.get (0);
-	}
 
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de TipoBebida de parranderos
-	 */
-	public String darTablaTipoBebida ()
-	{
-		return tablas.get (1);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bebida de parranderos
-	 */
-	public String darTablaBebida ()
-	{
-		return tablas.get (2);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bar de parranderos
-	 */
-	public String darTablaBar ()
-	{
-		return tablas.get (3);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bebedor de parranderos
-	 */
-	public String darTablaBebedor ()
-	{
-		return tablas.get (4);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Gustan de parranderos
-	 */
-	public String darTablaGustan ()
-	{
-		return tablas.get (5);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Sirven de parranderos
-	 */
-	public String darTablaSirven ()
-	{
-		return tablas.get (6);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Visitan de parranderos
-	 */
-	public String darTablaVisitan ()
-	{
-		return tablas.get (7);
-	}
-	
 	public String darSeqSuperAndes()
 	{
-		return tablas.get(8);
+		return tablas.get(0);
 	}
 
 	public String darTablaUsuario()
 	{
-		return tablas.get(9);
+		return tablas.get(2);
 	}
 
 	public String darTablaPromocion()
 	{
-		return tablas.get(10);
+		return tablas.get(3);
 	}
 
 	public String darTablaProducto()
 	{
-		return tablas.get(11);
+		return tablas.get(4);
 	}
 
 	public String darTablaFactura()
 	{
-		return tablas.get(15);
+		return tablas.get(5);
 	}
 
 	public String darTablaCompra()
 	{
-		return tablas.get(16);
+		return tablas.get(6);
 	}
 	public String darTablaCategoria()
 	{
-		return tablas.get(17);
+		return tablas.get(7);
 	}
 	public String darTablaPedido()
 	{
-		return tablas.get(18);
+		return tablas.get(8);
 	}
 	public String darTablaProveedor()
 	{
-		return tablas.get(19);
+		return tablas.get(9);
 	}
 	public String darTablaComprador()
 	{
-		return tablas.get(20);
+		return tablas.get(10);
 	}
 	public String darTablaContenedor()
 	{
-		return tablas.get(21);
+		return tablas.get(11);
 	}
 	public String darTablaSupermercado()
 	{
-		return tablas.get(22);
+		return tablas.get(12);
 	}
 	public String darTablaSucursal()
 	{
-		return tablas.get(23);
+		return tablas.get(13);
 	}
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
@@ -404,8 +340,361 @@ public class PersistenciaSuperandes
 	}
 
 	/* ****************************************************************
-	 * 			Métodos para manejar los TIPOS DE BEBIDA
+	 * 			Métodos para manejar los Usuarios
 	 *****************************************************************/
+	public Usuario adicionarUsuario(long documento, String nombre,String rol,String tipoDocumento, String correo, String key_word){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long tuplasInsertadas = sqlUsuario.adicionarUsuario(pm, documento, nombre, rol, tipoDocumento,correo, key_word);
+			tx.commit();
+
+			log.trace("Inserción de usuario: " + nombre + ": " + tuplasInsertadas+ "tuplas insertadas");
+			return new Usuario(documento, nombre, rol, tipoDocumento, correo, key_word);
+
+
+		} catch (Exception e) {
+
+			log.error("Exception: " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public long eliminarUsuarioPorDocumento(long documento){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try{
+			tx.begin();
+			long resp = sqlUsuario.eliminarUsuarioPorDocumento(pm, documento);
+			tx.commit();
+
+			return resp;
+		}catch(Exception e){
+			log.error("Exception: "+ e.getMessage() + "\n"+ darDetalleException(e));
+			return -1;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+
+	}
+
+	public Usuario darUsuarioPorDocumento(long documento){
+		return sqlUsuario.darUsuarioPorDocumento(pmf.getPersistenceManager(), documento);
+	}
+
+	public List<Usuario> darUsuarios(){
+		return sqlUsuario.darUsuarios(pmf.getPersistenceManager());
+	}
+
+	/** Métodos para manejar Supermercado */
+
+	public Supermercado adicionarSupermercado(String nombre, long nit_proveedor){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long tuplasInsertadas = sqlSupermercado.adicionarSupermercado(pm, nombre, nit_proveedor);
+			tx.commit();
+
+			log.trace("Inserción de supermercado: " + nombre + ": " + tuplasInsertadas+ "tuplas insertadas");
+			return new Supermercado(nombre, nit_proveedor);
+
+
+		} catch (Exception e) {
+
+			log.error("Exception: " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public long eliminarSupermercadoPorNombre(String nombre){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try{
+			tx.begin();
+			long resp = sqlSupermercado.eliminarSupermercadoPorNombre(pm, nombre);
+			tx.commit();
+
+			return resp;
+		}catch(Exception e){
+			log.error("Exception: "+ e.getMessage() + "\n"+ darDetalleException(e));
+			return -1;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+
+	}
+
+	public Supermercado darSupermercadoPorNombre(String nombre){
+		return sqlSupermercado.darSupermercadoPornombre(pmf.getPersistenceManager(), nombre);
+	}
+
+	public List<Supermercado> darSupermercados(){
+		return sqlSupermercado.darSupermercados(pmf.getPersistenceManager());
+	}
+
+	/** Métodos para manejar sucursal */
+
+	public Sucursal adicionarSucursal(String nombre, String direccion, String ciudad, String nombre_supermercado, long id_contenedor, long id_compra, long documento_usuario){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long tuplasInsertadas = sqlSucursal.adicionarSucursal(pm,nombre,direccion,ciudad,nombre_supermercado,id_contenedor,id_compra,documento_usuario);
+			tx.commit();
+
+			log.trace("Inserción de sucursal: " + nombre + ": " + tuplasInsertadas+ "tuplas insertadas");
+			return new Sucursal(nombre,direccion,ciudad,nombre_supermercado,id_contenedor,id_compra,documento_usuario);
+
+
+		} catch (Exception e) {
+
+			log.error("Exception: " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public long eliminarSucursalPorNombre(String nombre){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try{
+			tx.begin();
+			long resp = sqlSucursal.eliminarSucursalPorNombre(pm, nombre);
+			tx.commit();
+
+			return resp;
+		}catch(Exception e){
+			log.error("Exception: "+ e.getMessage() + "\n"+ darDetalleException(e));
+			return -1;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+
+	}
+
+	public Sucursal darSucursalPorNombre(String nombre){
+		return sqlSucursal.darSucursalPorNombre(pmf.getPersistenceManager(), nombre);
+	}
+
+	public List<Sucursal> darSucursales(){
+		return sqlSucursal.darSucursales(pmf.getPersistenceManager());
+	}
+
+
+
+	/** Métodos para manejar proveedor */
+
+	public Proveedor adicionarProveedor(long nit, String rol, String nombre, String correo_e, String producto_proveedor, String fecha_entregapedido, long calificacion){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long tuplasInsertadas = sqlProveedor.adicionarProveedor(pm,nit, rol, nombre, correo_e, producto_proveedor, fecha_entregapedido, calificacion);
+			tx.commit();
+
+			log.trace("Inserción de proveedor: " + nombre + ": " + tuplasInsertadas+ "tuplas insertadas");
+			return new Proveedor(nit, rol, nombre, correo_e, producto_proveedor, fecha_entregapedido, calificacion);
+
+
+		} catch (Exception e) {
+
+			log.error("Exception: " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public long eliminarProveedorPorNIT(long nit){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try{
+			tx.begin();
+			long resp = sqlProveedor.eliminarProveedorPorNit(pm, nit);
+			tx.commit();
+
+			return resp;
+		}catch(Exception e){
+			log.error("Exception: "+ e.getMessage() + "\n"+ darDetalleException(e));
+			return -1;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+
+	}
+
+	public Proveedor darProveedorPorNIT(long nit){
+		return sqlProveedor.darProveedorPorNit(pmf.getPersistenceManager(), nit);
+	}
+
+	public List<Proveedor> darProveedores(){
+		return sqlProveedor.darProveedores(pmf.getPersistenceManager());
+	}
+
+	/** Métodos para manejar promociones */
+
+	public Promocion adicionarPromocion(long tipo){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long tuplasInsertadas = sqlPromocion.adicionarPromocion(pm,tipo);
+			tx.commit();
+
+			log.trace("Inserción de promociónn de tipo: " + tipo + ": " + tuplasInsertadas+ "tuplas insertadas");
+			return new Promocion(tipo);
+
+
+		} catch (Exception e) {
+
+			log.error("Exception: " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public long eliminarPromocionPorTipo(long tipo){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try{
+			tx.begin();
+			long resp = sqlPromocion.eliminarPromocion(pm, tipo);
+			tx.commit();
+
+			return resp;
+		}catch(Exception e){
+			log.error("Exception: "+ e.getMessage() + "\n"+ darDetalleException(e));
+			return -1;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+
+	}
+
+	public Promocion darPromocionPorTipo(long tipo){
+		return sqlPromocion.darPromocion(pmf.getPersistenceManager(), tipo);
+	}
+
+	public List<Promocion> darPromociones(){
+		return sqlPromocion.darPromociones(pmf.getPersistenceManager());
+	}
+
+	/** Métodos para manejar Productos */
+
+	public Producto adicionarProducto(String nombre, String marca, long precioU, String presentacion, long precio_unimed, long cantidadPresente, String unimed, String espEmpacado, String codBarra, long promocion){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long tuplasInsertadas = sqlProducto.adicionarProducto(pm,nombre, marca, precioU, presentacion, precio_unimed, cantidadPresente, unimed, espEmpacado, codBarra, promocion);
+			tx.commit();
+
+			log.trace("Inserción del producto: " + nombre + ": " + tuplasInsertadas+ "tuplas insertadas");
+			return new Producto (nombre, marca, precioU, presentacion, precio_unimed, cantidadPresente, unimed, espEmpacado, codBarra, promocion);
+
+
+		} catch (Exception e) {
+
+			log.error("Exception: " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public long eliminarProductoPorCodBarras(String codBarra){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try{
+			tx.begin();
+			long resp = sqlProducto.eliminarProductoPorCodBarras(pm, codBarra);
+			tx.commit();
+
+			return resp;
+		}catch(Exception e){
+			log.error("Exception: "+ e.getMessage() + "\n"+ darDetalleException(e));
+			return -1;
+		}
+		finally{
+			if(tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+
+	}
+
+	public Producto darProductoPorCodBarra(String codBarra){
+		return sqlProducto.darProductoPorCodBarras(pmf.getPersistenceManager(), codBarra);
+	}
+
+	public List<Producto> darProductos(){
+		return sqlProducto.darProductos(pmf.getPersistenceManager());
+	}
 
 	/**
 	 * Método que inserta, de manera transaccional, una tupla en la tabla TipoBebida
@@ -416,3 +705,4 @@ public class PersistenciaSuperandes
 	
 
  }
+

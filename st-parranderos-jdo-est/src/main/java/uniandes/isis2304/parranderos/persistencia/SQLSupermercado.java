@@ -37,11 +37,7 @@ class SQLSupermercado
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-<<<<<<< HEAD
-	private final static String SQL = PersistenciaSuperAndes.SQL;
-=======
 	private final static String SQL = PersistenciaSuperandes.SQL;
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -49,11 +45,7 @@ class SQLSupermercado
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-<<<<<<< HEAD
-	private PersistenciaSuperAndes pp;
-=======
 	private PersistenciaSuperandes pp;
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -63,11 +55,7 @@ class SQLSupermercado
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-<<<<<<< HEAD
-	public SQLSupermercado (PersistenciaSuperAndes pp)
-=======
 	public SQLSupermercado (PersistenciaSuperandes pp)
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
 	{
 		this.pp = pp;
 	}
@@ -89,11 +77,11 @@ class SQLSupermercado
         return (long) q.executeUnique();
 	}
 
-	public String eliminarSupermercadoPorNombre(PersistenceManager pm, String nombre)
+	public long eliminarSupermercadoPorNombre(PersistenceManager pm, String nombre)
     {
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSupermercado () + " WHERE nombre = ?");
         q.setParameters(nombre);
-        return (String) q.executeUnique();
+        return (long) q.executeUnique();
     }
 
 	/**

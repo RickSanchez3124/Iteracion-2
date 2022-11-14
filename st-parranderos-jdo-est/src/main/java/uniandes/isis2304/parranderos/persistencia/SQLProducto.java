@@ -8,35 +8,27 @@ import javax.jdo.Query;
 
 public class SQLProducto {
 
-<<<<<<< HEAD
-    private final static String SQL = PersistenciaSuperAndes.SQL;
-
-    private PersistenciaSuperAndes pp;
-
-    public SQLProducto(PersistenciaSuperAndes pp)
-=======
     private final static String SQL = PersistenciaSuperandes.SQL;
 
     private PersistenciaSuperandes pp;
 
     public SQLProducto(PersistenciaSuperandes pp)
->>>>>>> 2ff2856857790ccd3194d748f26a43b279dc8df5
     {
         this.pp= pp;
     }
 
-    public String adicionarProducto (PersistenceManager pm, String nombre, String marca, long precioU, String presentacion, long precioUnimed, long cantidadPresente, String unimed, String espEmpacado, String codBarra, long promocion)
+    public long adicionarProducto (PersistenceManager pm, String nombre, String marca, long precioU, String presentacion, long precioUnimed, long cantidadPresente, String unimed, String espEmpacado, String codBarra, long promocion)
     {
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaProducto() + "(nombre,marca,precioU,presentacion, precioUnimed,cantidadPresente, unimed, espEmpacado, codBarra, promocion) value (?,?,?,?,?,?,?,?,?,?)");
         q.setParameters(nombre,marca,precioU,presentacion,precioUnimed,cantidadPresente,unimed,espEmpacado,codBarra,promocion);
-        return (String) q.executeUnique();
+        return (long) q.executeUnique();
     }
     
-    public String eliminarProductoPorCodBarras (PersistenceManager pm, String codBarra)
+    public long eliminarProductoPorCodBarras (PersistenceManager pm, String codBarra)
     {
         Query q = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaProducto() + "WHERE codBarra =?");
         q.setParameters(codBarra);
-        return (String) q.executeUnique();
+        return (long) q.executeUnique();
     }
 
     public Producto darProductoPorCodBarras (PersistenceManager pm, String codBarra)
