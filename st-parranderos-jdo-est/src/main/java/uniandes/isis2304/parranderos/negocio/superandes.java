@@ -313,6 +313,51 @@ public class superandes {
         return categoria;
     }
 
+    /* ****************************************************************
+     *          Métodos para manejar los roles
+     *****************************************************************/
+
+    public Rol adicionarRol (String nombre, String descripcion, Integer documento) 
+    {
+        log.info ("Adicionando rol [" + nombre + ", " + descripcion + ", " + documento + "]");
+        Rol rol = pp.adicionarRol (nombre, descripcion, documento);        
+        log.info ("Adicionando rol: " + rol);
+        return rol;
+    }
+
+    public long eliminarRolPorNombre (String  nombre)
+    {
+        log.info ("Eliminando rol por nombre: " + nombre);
+        long resp = pp.eliminarRolPorNombre (nombre);        
+        log.info ("Eliminando rol por nombre: " + resp + " tuplas eliminadas");
+        return resp;
+    }
+
+    public Rol darRolPorNombre (String  nombre)
+    {
+        log.info ("Dar información de un rol por nombre: " + nombre);
+        Rol rol = pp.darRolPorNombre (nombre);
+        log.info ("Buscando un rol por nombre: " + rol != null ? rol : "NO EXISTE");
+        return rol;
+    }
+
+    public Rol darRolPorDocumento(Integer  documento)
+    {
+        log.info ("Dar información de los roles por documento: " + documento);
+        Rol rol = pp.darRolPorDocumento (documento);
+        log.info ("Buscando categorias por tipo: " + rol != null ? rol : "NO EXISTE");
+        return rol;
+    }
+
+    public List<Rol> darRoles ()
+    {
+        log.info ("Consultando roles");
+        List<Rol> rol = pp.darRoles ();    
+        log.info ("Consultando roles: " + rol.size() + " existentes");
+        return rol;
+    }
+
+
       /* ****************************************************************
      *          Métodos para manejar las compras
      *****************************************************************/

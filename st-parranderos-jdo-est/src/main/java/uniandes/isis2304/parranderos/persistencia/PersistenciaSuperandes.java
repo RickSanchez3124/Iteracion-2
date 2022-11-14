@@ -44,6 +44,7 @@ import uniandes.isis2304.parranderos.negocio.Factura;
 import uniandes.isis2304.parranderos.negocio.Producto;
 import uniandes.isis2304.parranderos.negocio.Promocion;
 import uniandes.isis2304.parranderos.negocio.Usuario;
+import uniandes.isis2304.parranderos.negocio.Rol;
 
 
 /**
@@ -118,6 +119,8 @@ public class PersistenciaSuperandes
 	private SQLSupermercado sqlSupermercado;
 
 	private SQLSucursal sqlSucursal;
+
+	private SQLRol sqlRol;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -147,6 +150,7 @@ public class PersistenciaSuperandes
 		tablas.add("A_CONTENEDOR");
 		tablas.add("A_SUPERMERCADO");
 		tablas.add("A_SUCURSAL");
+		tablas.add("A_ROl");
 }
 
 	/**
@@ -234,6 +238,7 @@ public class PersistenciaSuperandes
 		sqlContenedor = new SQLContenedor(this);
 		sqlSupermercado = new SQLSupermercado(this);
 		sqlSucursal = new SQLSucursal(this);
+		sqlRol = new SQLRol(this);
 
 		}
 
@@ -296,6 +301,10 @@ public class PersistenciaSuperandes
 	public String darTablaSucursal()
 	{
 		return tablas.get(12);
+	}
+	public String darTablaRol()
+	{
+		return tablas.get(13);
 	}
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
@@ -762,6 +771,86 @@ public class PersistenciaSuperandes
     {
         return sqlFactura.darFacturas(pmf.getPersistenceManager());
     }
+
+
+	/* ****************************************************************
+	 * 			Métodos para manejar los roles
+	 *****************************************************************/
+
+	public Rol adicionarRol(String nombre, String descripcion, Integer documento)
+    {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long tuplasInsertadas = sqlRol.adicionarRol(pm, nombre, descripcion, documento);
+            tx.commit();
+            
+            log.trace ("Inserción de rol: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new Rol(nombre, descripcion, documento);
+        }
+        catch (Exception e)
+        {
+//          e.printStackTrace();
+            log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+    }
+    
+    public long eliminarRolPorNombre (String nombre) 
+    {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlRol.eliminarRolPorNombre(pm, nombre);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//          e.printStackTrace();
+            log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+    }
+    
+    public Rol darRolPorNombre (String nombre)
+    {
+        return sqlRol.darRolPorNombre(pmf.getPersistenceManager(), nombre);
+    }
+
+	public Rol darRolPorDocumento (Integer documento)
+    {
+        return sqlRol.darRolPorDocumento(pmf.getPersistenceManager(), documento);
+    }
+    
+    public List<Rol> darRoles ()
+    {
+        return sqlRol.darRoles(pmf.getPersistenceManager());
+    }
+
+
 
 	/* ****************************************************************
 	 * 			Métodos para manejar los pedidos

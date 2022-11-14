@@ -46,8 +46,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
-import uniandes.isis2304.parranderos.negocio.Parranderos;
-import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
+import uniandes.isis2304.parranderos.negocio.superandes;
+import uniandes.isis2304.parranderos.negocio.*;
 
 /**
  * Clase principal de la interfaz
@@ -55,7 +55,7 @@ import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
  */
 @SuppressWarnings("serial")
 
-public class InterfazParranderosApp extends JFrame implements ActionListener
+public class InterfazSuperandesApp extends JFrame implements ActionListener
 {
 	/* ****************************************************************
 	 * 			Constantes
@@ -63,7 +63,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(InterfazParranderosApp.class.getName());
+	private static Logger log = Logger.getLogger(InterfazSuperandesApp.class.getName());
 	
 	/**
 	 * Ruta al archivo de configuración de la interfaz
@@ -86,7 +86,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
     /**
      * Asociación a la clase principal del negocio.
      */
-    private Parranderos parranderos;
+    private superandes superandes;
     
 	/* ****************************************************************
 	 * 			Atributos de interfaz
@@ -106,6 +106,10 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
      */
     private JMenuBar menuBar;
 
+	private String Sesion;
+
+    private List<Long> listaId;
+
 	/* ****************************************************************
 	 * 			Métodos
 	 *****************************************************************/
@@ -113,7 +117,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
      * Construye la ventana principal de la aplicación. <br>
      * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
      */
-    public InterfazParranderosApp( )
+    public InterfazSuperandesApp( )
     {
         // Carga la configuración de la interfaz desde un archivo JSON
         guiConfig = openConfig ("Interfaz", CONFIG_INTERFAZ);
@@ -126,7 +130,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
         }
         
         tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
-        parranderos = new Parranderos (tableConfig);
+        superandes = new superandes (tableConfig);
         
     	String path = guiConfig.get("bannerPath").getAsString();
         panelDatos = new PanelDatos ( );
@@ -236,6 +240,60 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
         setJMenuBar ( menuBar );	
     }
     
+    public void iniciarSesion()
+    {
+        try 
+        {
+            String documento = JOptionPane.showInputDialog (this, "Ingrese su documento", "Iniciar sesión", JOptionPane.QUESTION_MESSAGE);
+            String key_word= JOptionPane.showInputDialog (this, "Ingrese la contraseña", "Iniciar sesión", JOptionPane.QUESTION_MESSAGE);
+
+            if (documento != null && key_word != null )
+            {
+                Integer documento2 = Integer.valueOf(documento);
+       
+                Usuario usuario = superandes.darUsuarioPorDocumento(documento2);
+                Rol rol = superandes.darRolPorDocumento(documento2);
+                
+                if (key_word.equals(usuario.getKeyWord()))
+                {
+                    Sesion = rol.getNombre();
+                }
+                else
+                {
+                    throw new Exception ("Contraseña incorrecta");
+                }
+                String resultado = "Se ha iniciado sesión correctamente como: " + Sesion;
+                panelDatos.actualizarInterfaz(resultado);
+                
+                
+            }
+            else
+            {
+                panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            }
+        }
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* ****************************************************************
 	 * 			CRUD de TipoBebida
 	 *****************************************************************/
@@ -621,7 +679,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
 		String evento = pEvento.getActionCommand( );		
         try 
         {
-			Method req = InterfazParranderosApp.class.getMethod ( evento );			
+			Method req = InterfazSuperandesApp.class.getMethod ( evento );			
 			req.invoke ( this );
 		} 
         catch (Exception e) 
@@ -644,7 +702,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
         	
             // Unifica la interfaz para Mac y para Windows.
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
-            InterfazParranderosApp interfaz = new InterfazParranderosApp( );
+            InterfazSuperandesApp interfaz = new InterfazSuperandesApp( );
             interfaz.setVisible( true );
         }
         catch( Exception e )
