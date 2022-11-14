@@ -11,7 +11,7 @@ public class Rol implements VORol {
 
     private String nombre;
     private String descripcion;
-    private Integer documento;
+    private long documento;
 
     public Rol()
     {
@@ -21,7 +21,7 @@ public class Rol implements VORol {
 
     }
 
-    public Rol(String nombre, String descripcion, String documento)
+    public Rol(String nombre, String descripcion, long documento)
     {
         this.nombre = nombre;
         this.descripcion= descripcion;
@@ -48,12 +48,12 @@ public class Rol implements VORol {
         this.descripcion = descripcion;
     }
 
-    public String getDocumento()
+    public long getDocumento()
     {
         return documento;
     }
 
-    public void setDocumento(String documento)
+    public void setDocumento(long documento)
     {
         this.documento = documento;
     }
