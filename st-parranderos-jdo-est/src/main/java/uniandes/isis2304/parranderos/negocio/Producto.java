@@ -1,7 +1,7 @@
 package uniandes.isis2304.parranderos.negocio;
 import java.util.List;
 
-public class Producto {
+public class Producto implements VOProducto {
 
     private String nombre;
     private String marca;
@@ -142,5 +142,23 @@ public class Producto {
     public void setPromocion(long promocion)
     {
         this.promocion = promocion;
+    }
+
+    @Override
+    public long getPrecioU() {
+        // TODO Auto-generated method stub
+        return precioU;
+    }
+
+    @Override
+    public long getPrecioUnimed() {
+        // TODO Auto-generated method stub
+        return precioUnimed;
+    }
+
+    @Override
+    public String getCodBarra() {
+        // TODO Auto-generated method stub
+        return codBarra;
     }
 }
