@@ -18,7 +18,7 @@ public class SQLRol {
     }
 
 
-    public long adicionarRol (PersistenceManager pm, String nombre, String descripcion, Integer documento)
+    public long adicionarRol (PersistenceManager pm, String nombre, String descripcion, long documento)
     {
         Query q = pm.newQuery(SQL, "INSERT INTO" + pp.darTablaRol() + "(nombre, descripcion, documento) values (?,?,?)");
         q.setParameters(nombre,descripcion, documento);
@@ -47,7 +47,7 @@ public class SQLRol {
         return (List<Rol>) q.executeList();
     }
 
-    public Rol darRolPorDocumento(PersistenceManager pm, Integer documento)
+    public Rol darRolPorDocumento(PersistenceManager pm, long documento)
     {
         Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaRol () + " WHERE documento = ?");
         q.setResultClass(Rol.class);
