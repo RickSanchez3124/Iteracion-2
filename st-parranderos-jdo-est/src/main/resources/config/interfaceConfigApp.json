@@ -92,6 +92,15 @@
 					"event": "adicionarComprador"
 				}
 			]
+		},
+		{ "menuTitle": "Promocion",
+		  "options":
+			[
+				{
+					"label": "Añadir Promocion",
+					"event": "adicionarPromocion"
+				}
+			]
 		},	
 		{ "menuTitle": "Documentación",
 		  "options":
