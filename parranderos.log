@@ -69,3 +69,59 @@
 15:40:47,351 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - Se encontró un archivo de configuración válido: Interfaz
 15:40:47,353 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - Se aplica configuración indicada en el archivo de configuración
 15:40:47,386 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:17:07,549 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:17:07,550 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+17:17:07,569 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:21:24,154 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:21:24,155 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+17:21:24,177 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:22:26,304 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - NO se encontró un archivo de configuración válido
+17:22:28,928 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración por defecto
+17:22:28,929 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - NO se encontró un archivo de configuración válido
+18:07:44,818 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:07:44,818 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:07:44,836 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:09:04,104 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:09:04,105 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:09:04,124 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:09:26,387 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información del usuario con el documento: 1193227771
+18:16:39,636 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:16:39,636 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:16:39,656 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:16:54,779 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información del usuario con el documento: 1193227771
+18:20:43,572 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:20:43,572 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:20:43,591 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:20:59,089 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información del usuario con el documento: 1193227771
+18:22:57,931 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:22:57,932 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:22:57,950 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:23:15,117 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información del usuario con el documento: 1193227771
+18:33:43,704 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:33:43,706 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:33:43,723 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:34:00,507 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información del usuario con el documento: 1193227771
+18:35:33,594 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:35:33,595 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:35:33,613 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:35:51,291 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información del usuario con el documento: 1193227771
+18:36:23,667 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:36:23,668 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:36:23,685 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:36:36,507 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información del usuario con el documento: 1193227771
+18:37:06,305 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:37:06,306 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:37:06,327 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:37:30,661 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información del usuario con el documento: 1193227771
+18:37:30,781 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - 1193227771
+18:37:30,781 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información de los roles por documento: 1193227771
+18:38:02,910 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:38:02,911 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:38:02,929 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:38:18,099 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información del usuario con el documento: 1193227771
+18:39:09,400 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:39:09,400 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se aplica configuración indicada en el archivo de configuración
+18:39:09,417 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazSuperandesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:39:37,554 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información del usuario con el documento: 1193227771
+18:39:37,694 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - 1193227771
+18:39:37,694 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.superandes] - Dar información de los roles por documento: 1193227771

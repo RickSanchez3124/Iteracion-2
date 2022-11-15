@@ -26,14 +26,14 @@ public class SQLUsuario {
 
 
     public long eliminarUsuarioPorDocumento(PersistenceManager pm, long Documento){
-        Query q = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaUsuario() + "WHERE Documento = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM" + pp.darTablaUsuario() + "WHERE NUM_DOC = ?");
         q.setParameters(Documento);
         return(long) q.executeUnique();
     }
 
     public Usuario darUsuarioPorDocumento(PersistenceManager pm, long Documento)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM" + pp.darTablaUsuario() +"WHERE Documento = ?");
+        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaUsuario() +" WHERE NUM_DOC = ?");
         q.setResultClass(Usuario.class);
         q.setParameters(Documento);
         return (Usuario) q.executeUnique();

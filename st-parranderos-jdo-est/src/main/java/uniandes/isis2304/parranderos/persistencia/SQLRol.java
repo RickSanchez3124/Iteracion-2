@@ -34,7 +34,7 @@ public class SQLRol {
 
     public Rol darRolPorNombre(PersistenceManager pm, String nombre)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM" + pp.darTablaRol() +"WHERE nombre = ?");
+        Query q = pm.newQuery(SQL, " SELECT * FROM " + pp.darTablaRol() +" WHERE nombre = ?");
         q.setResultClass(Rol.class);
         q.setParameters(nombre);
         return (Rol) q.executeUnique();
@@ -42,14 +42,14 @@ public class SQLRol {
     
     public List<Rol> darRoles (PersistenceManager pm)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaRol() );
+        Query q = pm.newQuery(SQL, " SELECT * FROM " + pp.darTablaRol() );
         q.setResultClass(Rol.class);
         return (List<Rol>) q.executeList();
     }
 
     public Rol darRolPorDocumento(PersistenceManager pm, long documento)
     {
-        Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaRol () + " WHERE documento = ?");
+        Query q = pm.newQuery(SQL, " SELECT * FROM " + pp.darTablaRol () + " WHERE NUM_DOC = ?");
         q.setResultClass(Rol.class);
         q.setParameters(documento);
         return (Rol) q.executeUnique();

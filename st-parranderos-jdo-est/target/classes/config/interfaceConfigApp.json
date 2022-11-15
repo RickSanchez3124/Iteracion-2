@@ -5,52 +5,94 @@
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "TipoBebida",
+		{ "menuTitle": "Inicio Sesion",
 		  "options":
 			[
 				{
-					"label": "Adicionar",
-					"event": "adicionarTipoBebida"
+					"label": "Iniciar Sesion",
+					"event": "iniciarSesion"
 				},
 				{
-					"label": "Listar",
-					"event": "listarTipoBebida"
-				},
-				{
-					"label": "Borrar por Id",
-					"event": "eliminarTipoBebidaPorId"
-				},
-				{
-					"label": "Buscar por Nombre",
-					"event": "buscarTipoBebidaPorNombre"
+					"label": "Cambiar Sesion",
+					"event": "iniciarSesion"
 				}
 			]
 		},
-		{ "menuTitle": "Mantenimiento",
+		{ "menuTitle": "Rol",
 		  "options":
 			[
 				{
-					"label": "Mostrar log Parranderos",
-					"event": "mostrarLogParranderos"
+					"label": "Añadir Rol",
+					"event": "añadirRol"
 				},
 				{
-					"label": "Mostrar log datanucleus",
-					"event": "mostrarLogDatanuecleus"
+					"label": "Mostrar los Roles",
+					"event": "listarRoles"
 				},
 				{
-					"label": "Limpiar log de parranderos",
-					"event": "limpiarLogParranderos"
+					"label": "Borrar Rol por nombre",
+					"event": "eliminarRolPorNombre"
 				},
 				{
-					"label": "Limpiar log de datanucleus",
-					"event": "limpiarLogDatanucleus"
-				},
-				{
-					"label": "Limpiar Base de Datos",
-					"event": "limpiarBD"
+					"label": "Buscar Rol por nombre",
+					"event": "darRolPorNombre"
 				}
 			]
-		},		
+		},
+		{ "menuTitle": "Sucursal",
+		  "options":
+			[
+				{
+					"label": "Añadir Sucursal",
+					"event": "añadirSucursal"
+				}
+			]
+		},
+		{ "menuTitle": "Usuario",
+		  "options":
+			[
+				{
+					"label": "Añadir Usuario",
+					"event": "añadirUsuario"
+				}
+			]
+		},	
+		{ "menuTitle": "Contenedor",
+		  "options":
+			[
+				{
+					"label": "Añadir Contenedor",
+					"event": "añadirContenedor"
+				}
+			]
+		},	
+		{ "menuTitle": "Proveedor",
+		  "options":
+			[
+				{
+					"label": "Añadir Proveedor",
+					"event": "añadirProveedor"
+				}
+			]
+		},	
+		{ "menuTitle": "Producto",
+		  "options":
+			[
+				{
+					"label": "Añadir Producto",
+					"event": "añadirProducto"
+				}
+			]
+		},
+		{ "menuTitle": "Comprador",
+		  "options":
+			[
+				{
+					"label": "Añadir Comprador",
+					"event": "adicionarComprador"
+				}
+			]
+		},	
 		{ "menuTitle": "Documentación",
 		  "options":
 			[

@@ -357,6 +357,19 @@ public class superandes {
         return rol;
     }
 
+    public List<VORol> darVORoles ()
+    {
+        log.info ("Generando los VO de roles");        
+        List<VORol> voRol = new LinkedList<VORol> ();
+        for (Rol tb : pp.darRoles ())
+        {
+            voRol.add(tb);
+        }
+        log.info ("Generando los VO de categorias: " + voRol.size() + " existentes");
+        return voRol;
+
+    }
+
 
       /* ****************************************************************
      *          Métodos para manejar las compras

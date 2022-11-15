@@ -279,44 +279,458 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
             panelDatos.actualizarInterfaz(resultado);
         }
     }
-	
 
-	/* ****************************************************************
-	 * 			Métodos administrativos
-	 *****************************************************************/
-	/**
-	 * Muestra el log de Parranderos
-	 */
-	public void mostrarLogParranderos ()
-	{
-		mostrarArchivo ("parranderos.log");
-	}
-	
-	/**
-	 * Muestra el log de datanucleus
-	 */
-	public void mostrarLogDatanuecleus ()
-	{
-		mostrarArchivo ("datanucleus.log");
-	}
-	
-	/**
-	 * Limpia el contenido del log de parranderos
-	 * Muestra en el panel de datos la traza de la ejecución
-	 */
-	public void limpiarLogParranderos ()
-	{
-		// Ejecución de la operación y recolección de los resultados
-		boolean resp = limpiarArchivo ("parranderos.log");
+	public void añadirRol( )
+    {
+        try 
+        {
+            String nombre = JOptionPane.showInputDialog (this, "Nombre del rol que va a añadir?", "Añadir rol", JOptionPane.QUESTION_MESSAGE);
+            String descripcion = JOptionPane.showInputDialog (this, "Descripcion rol?", "Adicionar descripción", JOptionPane.QUESTION_MESSAGE);
+			String documento = JOptionPane.showInputDialog (this, "Numero de Documento?", "Adicionar numero de documento", JOptionPane.QUESTION_MESSAGE);
+			Integer documento2 = Integer.valueOf(documento);
 
-		// Generación de la cadena de caracteres con la traza de la ejecución de la demo
-		String resultado = "\n\n************ Limpiando el log de parranderos ************ \n";
-		resultado += "Archivo " + (resp ? "limpiado exitosamente" : "NO PUDO ser limpiado !!");
-		resultado += "\nLimpieza terminada";
+            if (nombre != null && descripcion != null && documento2 != 0)
+            {
+                VORol tb = superandes.adicionarRol (nombre, descripcion, documento2);
+                if (tb == null)
+                {
+                    throw new Exception ("No se pudo añadir un rol: " + nombre);
+                }
+                String resultado = "En añadirRol\n\n";
+                resultado += "Rol añadido correctamente: " + tb;
+                resultado += "\n Operación terminada";
+                panelDatos.actualizarInterfaz(resultado);
+            }
+            else
+            {
+                panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            }
+        } 
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+    
+    private String listarRoles(List<VORol> lista) 
+    {
+        String resp = "Los roles existentes son:\n";
+        int i = 1;
+        for (VORol tb : lista)
+        {
+            resp += i++ + ". " + tb.toString() + "\n";
+        }
+        return resp;
+    }
 
-		panelDatos.actualizarInterfaz(resultado);
-	}
+    public void listarRol( )
+    {
+    	try 
+    	{
+			List <VORol> lista = superandes.darVORoles();
+
+			String resultado = "En listarRol";
+			resultado +=  "\n" + listarRoles(lista);
+			panelDatos.actualizarInterfaz(resultado);
+			resultado += "\n Operación terminada";
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    public void eliminarRolPorNombre( )
+    {
+        try 
+        {
+            String nombre = JOptionPane.showInputDialog (this, "Nombre del rol?", "Borrar rol de usuario por nombre", JOptionPane.QUESTION_MESSAGE);
+            if (nombre != null)
+            {
+    
+                long tbEliminados = superandes.eliminarRolPorNombre (nombre);
+
+                String resultado = "En eliminar rol\n\n";
+                resultado += tbEliminados + " Rol eliminado\n";
+                resultado += "\n Operación terminada";
+                panelDatos.actualizarInterfaz(resultado);
+            }
+            else
+            {
+                panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            }
+        } 
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+    
+    public void darRolPorNombre( )
+    {
+        try 
+        {
+            String nombre = JOptionPane.showInputDialog (this, "Nombre del rol?", "Buscar rol por nombre", JOptionPane.QUESTION_MESSAGE);
+            if (nombre != null)
+            {
+                VORol rol = superandes.darRolPorNombre (nombre);
+                String resultado = "En buscar rol por nombre\n\n";
+                if (rol != null)
+                {
+                    resultado += "El rol es: " + rol;
+                }
+                else
+                {
+                    resultado += "Un rol con nombre: " + nombre + " NO EXISTE\n";                  
+                }
+                resultado += "\n Operación terminada";
+                panelDatos.actualizarInterfaz(resultado);
+            }
+            else
+            {
+                panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            }
+        } 
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+
+	public void añadirSucursal( )
+    {
+        try 
+        {
+            String nombre = JOptionPane.showInputDialog (this, "Nombre de la sucursal?", "Añadir nombre", JOptionPane.QUESTION_MESSAGE);
+            String direccion = JOptionPane.showInputDialog (this, "Direccion de la sucursal?", "Añadir direccion", JOptionPane.QUESTION_MESSAGE);
+            String ciudad = JOptionPane.showInputDialog (this, "Ciudad de  la sucursal?", "Añador ciudad", JOptionPane.QUESTION_MESSAGE);
+			String nombre_supermercado = JOptionPane.showInputDialog (this, "nombre del supermercado al que pertenece?", "Añadir nombre del supermercado", JOptionPane.QUESTION_MESSAGE);
+			String id_contenedor = JOptionPane.showInputDialog (this, "Id del contenedor al que pertenece?", "Añadir id del contenedor", JOptionPane.QUESTION_MESSAGE);
+			String id_compra = JOptionPane.showInputDialog (this, "Id de la compra al que pertenece?", "Añadir id de la compra", JOptionPane.QUESTION_MESSAGE);
+			String documento_usuario = JOptionPane.showInputDialog (this, "Documento del usuario al que pertenece?", "Añadir documento del usuario", JOptionPane.QUESTION_MESSAGE);
+            long id_contenedor2 = Long.valueOf(id_contenedor);
+			long id_compra2 = Long.valueOf(id_compra);
+			long documento_usuario2 = Long.valueOf(documento_usuario);
+            if (nombre != null && direccion != null && ciudad != null && nombre_supermercado != null && id_contenedor2 != 0 && id_compra2 != 0 && documento_usuario2 != 0)
+            {
+                VOSucursal tb = superandes.adicionarSucursal (nombre, direccion, ciudad, nombre_supermercado, id_contenedor2, id_compra2, documento_usuario2);
+                if (tb == null)
+                {
+                    throw new Exception ("No se pudo añadir una sucursal");
+                }
+                String resultado = "En adicionarSucursal\n\n";
+                resultado += "Sucursal añadida exitosamente: " + tb;
+                resultado += "\n Operación terminada";
+                panelDatos.actualizarInterfaz(resultado);
+            }
+            else
+            {
+                panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            }
+        } 
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+
+
+	public void añadirUsuario( )
+    {
+        try 
+        {
+            String documento = JOptionPane.showInputDialog (this, "Documento?", "Adicionar documento", JOptionPane.QUESTION_MESSAGE);
+            String nombre = JOptionPane.showInputDialog (this, "tipo de documento?", "Adicionar tipo documento", JOptionPane.QUESTION_MESSAGE);
+            String rol = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+            String tipoDocumento = JOptionPane.showInputDialog (this, "correo?", "Adicionar correo", JOptionPane.QUESTION_MESSAGE);
+            String correo = JOptionPane.showInputDialog (this, "palabra clave?", "Adicionar palabra clave", JOptionPane.QUESTION_MESSAGE);
+            String key_word = JOptionPane.showInputDialog (this, "id de la sucursal a la que pertenece?", "Adicionar id de la sucursal a la que pertenece", JOptionPane.QUESTION_MESSAGE);
+            long documento2 = Long.valueOf(documento);
+            
+            if (documento2 != 0 && nombre != null && rol != null && tipoDocumento != null && correo != null && key_word != null)
+            {
+                VOUsuario tb = superandes.adicionarUsuario (documento2, nombre, rol, tipoDocumento, correo, key_word);
+                if (tb == null)
+                {
+                    throw new Exception ("No se pudo añadir un usuario");
+                }
+                String resultado = "En adicionarUsuario\n\n";
+                resultado += "Usuario añadido exitosamente: " + tb;
+                resultado += "\n Operación terminada";
+                panelDatos.actualizarInterfaz(resultado);
+            }
+            else
+            {
+                panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            }
+        } 
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+
+	public void adicionarContenedor( )
+    {
+        try 
+        {
+            String id = JOptionPane.showInputDialog (this, "tipo?", "Adicionar tipo", JOptionPane.QUESTION_MESSAGE);
+            String tipo = JOptionPane.showInputDialog (this, "capacidad?", "Adicionar capacidad", JOptionPane.QUESTION_MESSAGE);
+            String capacidad = JOptionPane.showInputDialog (this, "id de la sucursal a la que pertenece?", "Adicionar id de la sucursal a la que pertenece", JOptionPane.QUESTION_MESSAGE);
+            String categoria = JOptionPane.showInputDialog (this, "inventario?", "Adicionar inventario", JOptionPane.QUESTION_MESSAGE);
+            long id2 = Long.valueOf(id);
+			long capacidad2 = Long.valueOf(capacidad);
+            
+            if (id != null && tipo != null && capacidad2 != 0 && categoria != null)
+            {
+                VOContenedor tb = superandes.adicionarContenedor (id2, tipo, capacidad2, categoria);
+                if (tb == null)
+                {
+                    throw new Exception ("No se pudo crear un contenedor nuevo");
+                }
+                String resultado = "En adicionarContenedor\n\n";
+                resultado += "Contenedor añadido exitosamente: " + tb;
+                resultado += "\n Operación terminada";
+                panelDatos.actualizarInterfaz(resultado);
+            }
+            else
+            {
+                panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            }
+        } 
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+
+
+	public void adicionarProveedor( )
+    {
+        try 
+        {
+            String nit = JOptionPane.showInputDialog (this, "nit?", "Adicionar nit", JOptionPane.QUESTION_MESSAGE);
+            String rol = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+			String nombre = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+			String correo_e = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+			String producto_proveedor = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+			String fecha_entregapedido = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+			String calificacion = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+            long nit2 = Long.valueOf(nit);
+			long calificacion2 = Long.valueOf(calificacion);
+            if (nit2 != 0 && rol != null && nombre != null && correo_e != null && producto_proveedor != null && fecha_entregapedido != null && calificacion != null)
+            {
+                VOProveedor tb = superandes.adicionarProveedor (nit2, rol, nombre, correo_e, producto_proveedor, fecha_entregapedido, calificacion2);
+                if (tb == null)
+                {
+                    throw new Exception ("No se pudo añadir un proveedor");
+                }
+                String resultado = "En adicionarProveedor\n\n";
+                resultado += "Proveedor añadido exitosamente: " + tb;
+                resultado += "\n Operación terminada";
+                panelDatos.actualizarInterfaz(resultado);
+            }
+            else
+            {
+                panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            }
+        } 
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+
+	public void adicionarProducto( )
+    {
+        try 
+        {
+            String nombre = JOptionPane.showInputDialog (this, "codigoBarrasProducto?", "Adicionar codigo de barras", JOptionPane.QUESTION_MESSAGE);
+            String marca = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+            String precioU = JOptionPane.showInputDialog (this, "marca?", "Adicionar marca", JOptionPane.QUESTION_MESSAGE);
+            String presentacion = JOptionPane.showInputDialog (this, "presentacion?", "Adicionar presentacion", JOptionPane.QUESTION_MESSAGE);
+            String precioUnimed = JOptionPane.showInputDialog (this, "cantidadPresentacion?", "Adicionar cantidad de presentacion", JOptionPane.QUESTION_MESSAGE);
+            String cantidadPresente = JOptionPane.showInputDialog (this, "unidadMedida?", "Adicionar unidad de medida", JOptionPane.QUESTION_MESSAGE);
+            String unimed = JOptionPane.showInputDialog (this, "empacado?", "Adicionar empacado", JOptionPane.QUESTION_MESSAGE);
+            String espEmpacado = JOptionPane.showInputDialog (this, "categoria?", "Adicionar categoria", JOptionPane.QUESTION_MESSAGE);
+            String codBarra = JOptionPane.showInputDialog (this, "fechaVencimiento?", "Adicionar fecha de vencimiento", JOptionPane.QUESTION_MESSAGE);
+            String promocion = JOptionPane.showInputDialog (this, "nivelReorden?", "Adicionar nivel de reorden", JOptionPane.QUESTION_MESSAGE);
+            long precioU2 = Long.valueOf(precioU);
+            long precioUnimed2 = Long.valueOf(precioUnimed);
+			long cantidadPresente2 = Long.valueOf(cantidadPresente);
+			long promocion2 = Long.valueOf(promocion);
+
+            if (nombre != null && marca != null && precioU2 != 0 && presentacion != null && precioUnimed2 != 0 && cantidadPresente2 != 0 && unimed != null && espEmpacado != null && codBarra != null && promocion2 != 0)
+            {
+                VOProducto tb = superandes.adicionarProducto(nombre, marca, precioU2, presentacion, precioUnimed2, cantidadPresente2, unimed, espEmpacado, codBarra, promocion2);
+                if (tb == null)
+                {
+                    throw new Exception ("No se pudo crear un producto nuevo");
+                }
+                String resultado = "En adicionarProducto\n\n";
+                resultado += "Producto añadido exitosamente: " + tb;
+                resultado += "\n Operación terminada";
+                panelDatos.actualizarInterfaz(resultado);
+            }
+            else
+            {
+                panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            }
+        } 
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+
+	public void adicionarComprador( )
+    {
+        try 
+        {
+            if (Sesion.equals("Gerente sucursal"))
+            {
+            String tipo = JOptionPane.showInputDialog (this, "Documento?", "Adicionar documento", JOptionPane.QUESTION_MESSAGE);
+            String nombre_comprador = JOptionPane.showInputDialog (this, "tipo de documento?", "Adicionar tipo documento", JOptionPane.QUESTION_MESSAGE);
+            String id_doc = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+            long id_doc2 = Long.valueOf(id_doc);
+
+            if (tipo != null && nombre_comprador != null && id_doc != null)
+            {
+                VOComprador tb = superandes.adicionarComprador (tipo, nombre_comprador, id_doc2);
+                if (tb == null)
+                {
+                    throw new Exception ("No se pudo añadir un comprador nuevo");
+                }
+                String resultado = "En adicionarCliente\n\n";
+                resultado += "Comprador añadido exitosamente: " + tb;
+                resultado += "\n Operación terminada";
+                panelDatos.actualizarInterfaz(resultado);
+            }
+            else
+            {
+                panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            }
+        }
+            else
+            {
+                JOptionPane.showMessageDialog (this, "Debe iniciar sesión como Gerente sucursal para hacer esta funcionalidad", "Error de Usuario", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
 	
+	public void adicionarPromocion( )
+    {
+        try 
+        {
+            if (Sesion.equals("Gerente sucursal"))
+            {
+            String tipo = JOptionPane.showInputDialog (this, "descripcion?", "Adicionar descripcion", JOptionPane.QUESTION_MESSAGE);
+            long tipo2 = Long.valueOf(tipo);
+            
+            if (tipo != null )
+            {
+                VOPromocion tb = superandes.adicionarPromocion (tipo2);
+                if (tb == null)
+                {
+                    throw new Exception ("No se pudo crear una promoción nuevo");
+                }
+                String resultado = "En adicionarPromocion\n\n";
+                resultado += "Promoción añadida exitosamente: " + tb;
+                resultado += "\n Operación terminada";
+                panelDatos.actualizarInterfaz(resultado);
+            }
+            else
+            {
+                panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            }
+        } 
+            else {
+                JOptionPane.showMessageDialog (this, "Debe iniciar sesión como Gerente sucursal para acceder a esta sucursal", "Error de Usuario", JOptionPane.WARNING_MESSAGE);
+
+            }
+        }
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+
+
+	public void adicionarPedido()
+    {
+        try{
+            if (Sesion.equals("Gerente sucursal"))
+            {
+            String fecha_e = JOptionPane.showInputDialog(this, "nitproveedor?", "Adicionar nitproveedor", JOptionPane.QUESTION_MESSAGE);
+            String cant_productos = JOptionPane.showInputDialog (this, "id de la sucursal a la que pertenece?", "Adicionar id de la sucursal a la que pertenece", JOptionPane.QUESTION_MESSAGE);
+            String calificacion_productos = JOptionPane.showInputDialog (this, "cantRecompra?", "Adicionar nivel de abastecimiento", JOptionPane.QUESTION_MESSAGE);
+            String calificacion_envio = JOptionPane.showInputDialog (this, "fechaEsperadaEntrega?", "Adicionar fecha esperada de entrega", JOptionPane.QUESTION_MESSAGE);
+            String estado = JOptionPane.showInputDialog (this, "fechaEntrega?", "Adicionar fecha de entrega", JOptionPane.QUESTION_MESSAGE);
+            String producto= JOptionPane.showInputDialog (this, "estado?", "Adicionar estado de la orden si es necesario", JOptionPane.QUESTION_MESSAGE);
+			long cant_productos2 = Long.valueOf(cant_productos);
+			long calificacion_productos2 = Long.valueOf(calificacion_productos);
+			long calificacion_envio2 = Long.valueOf(calificacion_envio);
+
+                if (fecha_e != null && cant_productos2 != 0 && calificacion_productos != null && calificacion_envio != null && estado != null && producto != null)
+                {
+                    VOPedido tb = superandes.adicionarPedido(fecha_e,  cant_productos2,  calificacion_productos2,  calificacion_envio2,  estado,  producto);
+                    if (tb==null)
+                    {
+                        throw new Exception ("No se pudo crear una orden de pedido nueva");
+                    }
+                    String resultado = "En adicionarPedido\n\n";
+                    resultado += "Pedido añadido exitosamente: " + tb;
+                    resultado += "\n Operación terminada";
+                    panelDatos.actualizarInterfaz(resultado);
+                }
+                else
+                {
+                    panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+                }
+            }
+			else
+			{
+				JOptionPane.showMessageDialog (this, "Debe iniciar sesión como Gerente sucursal para acceder a esta función", "Error de Usuario", JOptionPane.WARNING_MESSAGE);
+
+			}
+        }
+            catch (Exception e) 
+            {
+    //          e.printStackTrace();
+                String resultado = generarMensajeError(e);
+                panelDatos.actualizarInterfaz(resultado);
+            }
+        
+
+        
+    }
+
 	/**
 	 * Limpia el contenido del log de datanucleus
 	 * Muestra en el panel de datos la traza de la ejecución
