@@ -450,11 +450,11 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
         try 
         {
             String documento = JOptionPane.showInputDialog (this, "Documento?", "Adicionar documento", JOptionPane.QUESTION_MESSAGE);
-            String nombre = JOptionPane.showInputDialog (this, "tipo de documento?", "Adicionar tipo documento", JOptionPane.QUESTION_MESSAGE);
-            String rol = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
-            String tipoDocumento = JOptionPane.showInputDialog (this, "correo?", "Adicionar correo", JOptionPane.QUESTION_MESSAGE);
-            String correo = JOptionPane.showInputDialog (this, "palabra clave?", "Adicionar palabra clave", JOptionPane.QUESTION_MESSAGE);
-            String key_word = JOptionPane.showInputDialog (this, "id de la sucursal a la que pertenece?", "Adicionar id de la sucursal a la que pertenece", JOptionPane.QUESTION_MESSAGE);
+            String nombre = JOptionPane.showInputDialog (this, "Nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+            String rol = JOptionPane.showInputDialog (this, "Rol?", "Adicionar rol", JOptionPane.QUESTION_MESSAGE);
+            String tipoDocumento = JOptionPane.showInputDialog (this, "Tipo documento?", "Adicionar tipo de documento", JOptionPane.QUESTION_MESSAGE);
+            String correo = JOptionPane.showInputDialog (this, "Correo?", "Adicionar correo", JOptionPane.QUESTION_MESSAGE);
+            String key_word = JOptionPane.showInputDialog (this, "Contraseña?", "Adicionar contraseña", JOptionPane.QUESTION_MESSAGE);
             long documento2 = Long.valueOf(documento);
             
             if (documento2 != 0 && nombre != null && rol != null && tipoDocumento != null && correo != null && key_word != null)
@@ -486,10 +486,10 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
     {
         try 
         {
-            String id = JOptionPane.showInputDialog (this, "tipo?", "Adicionar tipo", JOptionPane.QUESTION_MESSAGE);
-            String tipo = JOptionPane.showInputDialog (this, "capacidad?", "Adicionar capacidad", JOptionPane.QUESTION_MESSAGE);
-            String capacidad = JOptionPane.showInputDialog (this, "id de la sucursal a la que pertenece?", "Adicionar id de la sucursal a la que pertenece", JOptionPane.QUESTION_MESSAGE);
-            String categoria = JOptionPane.showInputDialog (this, "inventario?", "Adicionar inventario", JOptionPane.QUESTION_MESSAGE);
+            String id = JOptionPane.showInputDialog (this, "Id?", "Adicionar id", JOptionPane.QUESTION_MESSAGE);
+            String tipo = JOptionPane.showInputDialog (this, "Tipo?", "Adicionar tipo", JOptionPane.QUESTION_MESSAGE);
+            String capacidad = JOptionPane.showInputDialog (this, "Capacidad?", "Adicionar capacidad", JOptionPane.QUESTION_MESSAGE);
+            String categoria = JOptionPane.showInputDialog (this, "Categoria?", "Adicionar categoria", JOptionPane.QUESTION_MESSAGE);
             long id2 = Long.valueOf(id);
 			long capacidad2 = Long.valueOf(capacidad);
             
@@ -523,13 +523,13 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
     {
         try 
         {
-            String nit = JOptionPane.showInputDialog (this, "nit?", "Adicionar nit", JOptionPane.QUESTION_MESSAGE);
-            String rol = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
-			String nombre = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
-			String correo_e = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
-			String producto_proveedor = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
-			String fecha_entregapedido = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
-			String calificacion = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+            String nit = JOptionPane.showInputDialog (this, "Nit?", "Adicionar nit", JOptionPane.QUESTION_MESSAGE);
+            String rol = JOptionPane.showInputDialog (this, "Rol?", "Adicionar rol", JOptionPane.QUESTION_MESSAGE);
+			String nombre = JOptionPane.showInputDialog (this, "Nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+			String correo_e = JOptionPane.showInputDialog (this, "Correo_e?", "Adicionar correo_e", JOptionPane.QUESTION_MESSAGE);
+			String producto_proveedor = JOptionPane.showInputDialog (this, "Producto del proveedor?", "Adicionar producto del proveedor", JOptionPane.QUESTION_MESSAGE);
+			String fecha_entregapedido = JOptionPane.showInputDialog (this, "Fecha de entrega del pedido?", "Adicionar fecha de entrega del pedido", JOptionPane.QUESTION_MESSAGE);
+			String calificacion = JOptionPane.showInputDialog (this, "Calificacion?", "Adicionar calificacion", JOptionPane.QUESTION_MESSAGE);
             long nit2 = Long.valueOf(nit);
 			long calificacion2 = Long.valueOf(calificacion);
             if (nit2 != 0 && rol != null && nombre != null && correo_e != null && producto_proveedor != null && fecha_entregapedido != null && calificacion != null)
@@ -561,16 +561,16 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
     {
         try 
         {
-            String nombre = JOptionPane.showInputDialog (this, "codigoBarrasProducto?", "Adicionar codigo de barras", JOptionPane.QUESTION_MESSAGE);
-            String marca = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
-            String precioU = JOptionPane.showInputDialog (this, "marca?", "Adicionar marca", JOptionPane.QUESTION_MESSAGE);
-            String presentacion = JOptionPane.showInputDialog (this, "presentacion?", "Adicionar presentacion", JOptionPane.QUESTION_MESSAGE);
-            String precioUnimed = JOptionPane.showInputDialog (this, "cantidadPresentacion?", "Adicionar cantidad de presentacion", JOptionPane.QUESTION_MESSAGE);
-            String cantidadPresente = JOptionPane.showInputDialog (this, "unidadMedida?", "Adicionar unidad de medida", JOptionPane.QUESTION_MESSAGE);
-            String unimed = JOptionPane.showInputDialog (this, "empacado?", "Adicionar empacado", JOptionPane.QUESTION_MESSAGE);
-            String espEmpacado = JOptionPane.showInputDialog (this, "categoria?", "Adicionar categoria", JOptionPane.QUESTION_MESSAGE);
-            String codBarra = JOptionPane.showInputDialog (this, "fechaVencimiento?", "Adicionar fecha de vencimiento", JOptionPane.QUESTION_MESSAGE);
-            String promocion = JOptionPane.showInputDialog (this, "nivelReorden?", "Adicionar nivel de reorden", JOptionPane.QUESTION_MESSAGE);
+            String nombre = JOptionPane.showInputDialog (this, "Nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+            String marca = JOptionPane.showInputDialog (this, "Marca?", "Adicionar marca", JOptionPane.QUESTION_MESSAGE);
+            String precioU = JOptionPane.showInputDialog (this, "Precio unidad?", "Adicionar precio por unidad", JOptionPane.QUESTION_MESSAGE);
+            String presentacion = JOptionPane.showInputDialog (this, "Presentacion?", "Adicionar presentacion", JOptionPane.QUESTION_MESSAGE);
+            String precioUnimed = JOptionPane.showInputDialog (this, "Presentación por unidad de medida?", "Adicionar presentacion por unidad de medida", JOptionPane.QUESTION_MESSAGE);
+            String cantidadPresente = JOptionPane.showInputDialog (this, "Cantidad presente?", "Adicionar cantidad presente", JOptionPane.QUESTION_MESSAGE);
+            String unimed = JOptionPane.showInputDialog (this, "Unidad de medida?", "Adicionar unidad de medida", JOptionPane.QUESTION_MESSAGE);
+            String espEmpacado = JOptionPane.showInputDialog (this, "Especificacion de empacada?", "Adicionar especificacion de empacado", JOptionPane.QUESTION_MESSAGE);
+            String codBarra = JOptionPane.showInputDialog (this, "Codigo de barras?", "Adicionar codigo de barras", JOptionPane.QUESTION_MESSAGE);
+            String promocion = JOptionPane.showInputDialog (this, "Promocion?", "Adicionar promocion", JOptionPane.QUESTION_MESSAGE);
             long precioU2 = Long.valueOf(precioU);
             long precioUnimed2 = Long.valueOf(precioUnimed);
 			long cantidadPresente2 = Long.valueOf(cantidadPresente);
@@ -607,9 +607,9 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
         {
             if (Sesion.equals("Gerente sucursal"))
             {
-            String tipo = JOptionPane.showInputDialog (this, "Documento?", "Adicionar documento", JOptionPane.QUESTION_MESSAGE);
-            String nombre_comprador = JOptionPane.showInputDialog (this, "tipo de documento?", "Adicionar tipo documento", JOptionPane.QUESTION_MESSAGE);
-            String id_doc = JOptionPane.showInputDialog (this, "nombre?", "Adicionar nombre", JOptionPane.QUESTION_MESSAGE);
+            String tipo = JOptionPane.showInputDialog (this, "Tipo?", "Adicionar tipo", JOptionPane.QUESTION_MESSAGE);
+            String nombre_comprador = JOptionPane.showInputDialog (this, "Nombre del comprador?", "Adicionar nombre del comprador", JOptionPane.QUESTION_MESSAGE);
+            String id_doc = JOptionPane.showInputDialog (this, "Id del documento?", "Adicionar id del documento", JOptionPane.QUESTION_MESSAGE);
             long id_doc2 = Long.valueOf(id_doc);
 
             if (tipo != null && nombre_comprador != null && id_doc != null)
@@ -648,7 +648,7 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
         {
             if (Sesion.equals("Gerente sucursal"))
             {
-            String tipo = JOptionPane.showInputDialog (this, "descripcion?", "Adicionar descripcion", JOptionPane.QUESTION_MESSAGE);
+            String tipo = JOptionPane.showInputDialog (this, "Tipo?", "Adicionar tipo", JOptionPane.QUESTION_MESSAGE);
             long tipo2 = Long.valueOf(tipo);
             
             if (tipo != null )
@@ -687,12 +687,12 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
         try{
             if (Sesion.equals("Gerente sucursal"))
             {
-            String fecha_e = JOptionPane.showInputDialog(this, "nitproveedor?", "Adicionar nitproveedor", JOptionPane.QUESTION_MESSAGE);
-            String cant_productos = JOptionPane.showInputDialog (this, "id de la sucursal a la que pertenece?", "Adicionar id de la sucursal a la que pertenece", JOptionPane.QUESTION_MESSAGE);
-            String calificacion_productos = JOptionPane.showInputDialog (this, "cantRecompra?", "Adicionar nivel de abastecimiento", JOptionPane.QUESTION_MESSAGE);
-            String calificacion_envio = JOptionPane.showInputDialog (this, "fechaEsperadaEntrega?", "Adicionar fecha esperada de entrega", JOptionPane.QUESTION_MESSAGE);
-            String estado = JOptionPane.showInputDialog (this, "fechaEntrega?", "Adicionar fecha de entrega", JOptionPane.QUESTION_MESSAGE);
-            String producto= JOptionPane.showInputDialog (this, "estado?", "Adicionar estado de la orden si es necesario", JOptionPane.QUESTION_MESSAGE);
+            String fecha_e = JOptionPane.showInputDialog(this, "Fecha?", "Adicionar fecha", JOptionPane.QUESTION_MESSAGE);
+            String cant_productos = JOptionPane.showInputDialog (this, "Cantidad de productos?", "Adicionar cantidad de productos", JOptionPane.QUESTION_MESSAGE);
+            String calificacion_productos = JOptionPane.showInputDialog (this, "Calificacion de los productos?", "Adicionar calificacion de los productos", JOptionPane.QUESTION_MESSAGE);
+            String calificacion_envio = JOptionPane.showInputDialog (this, "Calificacion del envio?", "Adicionar calificacion del envio", JOptionPane.QUESTION_MESSAGE);
+            String estado = JOptionPane.showInputDialog (this, "Estado?", "Adicionar estado", JOptionPane.QUESTION_MESSAGE);
+            String producto= JOptionPane.showInputDialog (this, "Producto?", "Adicionar producto", JOptionPane.QUESTION_MESSAGE);
 			long cant_productos2 = Long.valueOf(cant_productos);
 			long calificacion_productos2 = Long.valueOf(calificacion_productos);
 			long calificacion_envio2 = Long.valueOf(calificacion_envio);
