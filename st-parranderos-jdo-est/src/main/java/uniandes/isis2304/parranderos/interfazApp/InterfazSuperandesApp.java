@@ -741,16 +741,10 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
                 String id = JOptionPane.showInputDialog (this, "Id?", "Digite el id del carrito", JOptionPane.QUESTION_MESSAGE);
                 long documentoCliente2 = Integer.valueOf(documento);
                 long idCarrito2 = Long.valueOf(id);
-                Carrito darCarrito = superandes.darCarritoPorId(idCarrito2);
-                
-                if(darCarrito == null){
-                    throw new Exception("No existe el carrito dado");
-                }
                 
                 if (documento != null && id != null)
                 {
-                    Long tuplas= superandes.solicitarCarrito(idCarrito2, documentoCliente2);
-                    
+
                     String resultado = "Carrito solicitado\n\n";
                     resultado += "\n Operación terminada";
                     panelDatos.actualizarInterfaz(resultado);
@@ -827,6 +821,11 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
                 if (codBarras != null && id != null)
                 {
                 }
+
+                else
+            {
+                JOptionPane.showMessageDialog (this, "Debe iniciar sesión como Cliente para acceder a esta funcion", "Error de Usuario", JOptionPane.WARNING_MESSAGE);
+            }
             }
         }
         catch (Exception e) 
