@@ -5,10 +5,14 @@ import java.util.*;
 public class Carrito implements VOCarrito{
 
     private List<Producto> productos;
-    Date creacion = new Date();
+    Date creacion;
+    private Usuario usuario;
 
-    public Carrito(){
+    public Carrito(Usuario usuario){
         this.productos = new ArrayList<Producto>();
+        this.creacion = new Date();
+        this.usuario = usuario;
+
     }
 
     public List<Producto> getProductos(){
@@ -43,6 +47,15 @@ public class Carrito implements VOCarrito{
     public Date getDateCreacion(){
         return this.creacion;
     }
+
+    public String nombreUsuario(){
+        return this.usuario.getNombre();
+    }
+
+    public long documentoUsuario(){
+        return this.usuario.getDocumento();
+    }
+
 
 
     

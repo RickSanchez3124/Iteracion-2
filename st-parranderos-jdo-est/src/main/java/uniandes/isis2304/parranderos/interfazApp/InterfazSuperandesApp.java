@@ -779,7 +779,16 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	
+	/** Muestra el carrito de compra y realzia las operaciones vinculdas */
+
+    public void solicitarCarrito(){
+        try {
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+
 	/**
 	 * Muestra la presentación general del proyecto
 	 */

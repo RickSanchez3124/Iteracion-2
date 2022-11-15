@@ -9,5 +9,6 @@ public interface VOCarrito {
     public void vaciarCarrito();
     public void eliminarElemento(Producto producto);
     public void addProducto(Producto producto);
-    
+    public String nombreUsuario();
+    public long documentoUsuario();
 }

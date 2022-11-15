@@ -637,8 +637,8 @@ public class superandes {
 
     /** Métodos para manejar el carrito */
 
-    public Carrito solicitarCarrito(){
-        return new Carrito();
+    public Carrito solicitarCarrito(Usuario usuario){
+        return new Carrito(usuario);
     }
 
     public void agregarProductoACarrito(Carrito carrito, Producto producto){
@@ -657,7 +657,7 @@ public class superandes {
         return carrito.getProductos();
     }
 
-    public void Pagar(Carrito carrito, Usuario usuario){
+    public void Pagar(Carrito carrito){
         List<Producto> productos = carrito.getProductos();
         List<Compra> compras = darCompras();
         long index = compras.size();
@@ -671,7 +671,7 @@ public class superandes {
             adicionarPedido(fecha , 1, 5, 5, "Por entregar", nombre);
             eliminarProductoPorCodBarras(coBrras);
         }
-        adicionarFactura(date, usuario.getNombre());
+        adicionarFactura(date, carrito.nombreUsuario());
         carrito.vaciarCarrito();
     }
 
