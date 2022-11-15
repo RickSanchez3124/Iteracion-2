@@ -1,7 +1,10 @@
 package uniandes.isis2304.parranderos.negocio;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.*;
+
 import org.apache.*;
 import org.apache.log4j.Logger;
 import java.sql.Date;
@@ -630,6 +633,44 @@ public class superandes {
         long [] borrados = pp.limpiarSuperandes();    
         log.info ("Limpiando la BD de Parranderos: Listo!");
         return borrados;
+    }
+
+    /** Métodos para manejar el carrito */
+
+    public Carrito solicitarCarrito(){
+        return new Carrito();
+    }
+
+    public void agregarProductoACarrito(Carrito carrito, Producto producto){
+        carrito.addProducto(producto);
+    }
+
+    public void eliminarProductoDeCarrito(Carrito carrito, Producto producto){
+        carrito.eliminarElemento(producto);
+    }
+
+    public long precioEnElCarrito(Carrito carrito){
+        return carrito.getTotalPrecio();
+    }
+
+    public List<Producto> getProductosCarrito(Carrito carrito){
+        return carrito.getProductos();
+    }
+
+    public void Pagar(Carrito carrito, Usuario usuario){
+        List<Producto> productos = carrito.getProductos();
+        List<Compra> compras = darCompras();
+        long index = compras.size();
+        long miliseconds = System.currentTimeMillis();
+        Date date = new Date(miliseconds);
+        for (Producto producto : productos) {
+            String nombre = producto.getNombre();
+            String coBrras = producto.getCodBarras();
+            adicionarCompra(index,date, nombre);
+            eliminarProductoPorCodBarras(coBrras);
+        }
+        adicionarFactura(date, usuario.getNombre());
+        carrito.vaciarCarrito();
     }
 
 }
