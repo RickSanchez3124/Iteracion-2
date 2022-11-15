@@ -663,14 +663,26 @@ public class superandes {
         long index = compras.size();
         long miliseconds = System.currentTimeMillis();
         Date date = new Date(miliseconds);
+        String fecha = date.toString();
         for (Producto producto : productos) {
             String nombre = producto.getNombre();
             String coBrras = producto.getCodBarras();
             adicionarCompra(index,date, nombre);
+            adicionarPedido(fecha , 1, 5, 5, "Por entregar", nombre);
             eliminarProductoPorCodBarras(coBrras);
         }
         adicionarFactura(date, usuario.getNombre());
         carrito.vaciarCarrito();
+    }
+
+    public void vaciarCarritoCompras(Carrito carrito){
+        java.util.Date creacion = carrito.getDateCreacion();
+        java.util.Date actual = new java.util.Date();
+
+
+        if (actual.compareTo(creacion) > 3600){
+            carrito.vaciarCarrito();
+        }
     }
 
 }

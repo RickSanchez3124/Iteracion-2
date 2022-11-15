@@ -5,6 +5,7 @@ import java.util.*;
 public class Carrito implements VOCarrito{
 
     private List<Producto> productos;
+    Date creacion = new Date();
 
     public Carrito(){
         this.productos = new ArrayList<Producto>();
@@ -37,6 +38,10 @@ public class Carrito implements VOCarrito{
     public void addProducto(Producto producto){
         this.productos.add(producto);
     
+    }
+
+    public Date getDateCreacion(){
+        return this.creacion;
     }
 
 
