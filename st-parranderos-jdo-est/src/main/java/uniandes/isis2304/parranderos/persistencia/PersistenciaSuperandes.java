@@ -1316,5 +1316,7 @@ public class PersistenciaSuperandes
         
     }
 
+	/** Métodos para manejar el carrito de compras */
+
 
  }
