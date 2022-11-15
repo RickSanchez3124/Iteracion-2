@@ -731,6 +731,113 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
         
     }
 
+    public void solicitarCarrito( )
+    {
+        try 
+        {
+            if (Sesion.equals("Cliente"))
+            {
+                String documento = JOptionPane.showInputDialog (this, "Documento?", "Digite el documento del cliente", JOptionPane.QUESTION_MESSAGE);
+                String id = JOptionPane.showInputDialog (this, "Id?", "Digite el id del carrito", JOptionPane.QUESTION_MESSAGE);
+                long documentoCliente2 = Integer.valueOf(documento);
+                long idCarrito2 = Long.valueOf(id);
+                Carrito darCarrito = superandes.darCarritoPorId(idCarrito2);
+                
+                if(darCarrito == null){
+                    throw new Exception("No existe el carrito dado");
+                }
+                
+                if (documento != null && id != null)
+                {
+                    Long tuplas= superandes.solicitarCarrito(idCarrito2, documentoCliente2);
+                    
+                    String resultado = "Carrito solicitado\n\n";
+                    resultado += "\n Operación terminada";
+                    panelDatos.actualizarInterfaz(resultado);
+                }
+                else
+                {
+                    panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog (this, "Debe iniciar sesión como Cliente para acceder a esta función", "Error de Usuario", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+
+
+    public void adicionarProductoCarrito( )
+    {
+        try 
+        {
+            if (Sesion.equals("Cliente"))
+            {
+                String codBarras = JOptionPane.showInputDialog (this, "Codigo de barras?", "Digite el codigo de barras del producto", JOptionPane.QUESTION_MESSAGE);
+                String id = JOptionPane.showInputDialog (this, "Id?", "Digite el id del carrito", JOptionPane.QUESTION_MESSAGE);
+                long id2 = Long.valueOf(id);
+                
+                if (codBarras != null && id != null)
+                {
+                    VOProducto tb = superandes.adicionarProducto(codBarras, id2);
+                    if (tb == null)
+                    {
+                        throw new Exception ("No se pudo añadir el producto al carrito");
+                    }
+               
+                    String resultado = "En adicionarProductoCarrito\n\n";
+                    resultado += "Producto adicionado exitosamente: " + tb;
+                    resultado += "\n Operación terminada";
+                    panelDatos.actualizarInterfaz(resultado);
+                }
+                else
+                {
+                    panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog (this, "Debe iniciar sesión como Cliente para acceder a esta funcion", "Error de Usuario", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+
+
+    public void recogerCarrito(){
+        try{
+            if (Sesion.equals("Cliente"))
+            {
+                String codBarras = JOptionPane.showInputDialog (this, "Codigo de barras?", "Digite el codigo de barra", JOptionPane.QUESTION_MESSAGE);
+                String id = JOptionPane.showInputDialog (this, "Id?", "Digite el id del carrito", JOptionPane.QUESTION_MESSAGE);
+                long id2 = Long.valueOf(id);
+                
+                if (codBarras != null && id != null)
+                {
+                }
+            }
+        }
+        catch (Exception e) 
+        {
+//          e.printStackTrace();
+            String resultado = generarMensajeError(e);
+            panelDatos.actualizarInterfaz(resultado);
+        }
+    }
+
+
 	/**
 	 * Limpia el contenido del log de datanucleus
 	 * Muestra en el panel de datos la traza de la ejecución
@@ -781,13 +888,6 @@ public class InterfazSuperandesApp extends JFrame implements ActionListener
 	}
 	/** Muestra el carrito de compra y realzia las operaciones vinculdas */
 
-    public void solicitarCarrito(){
-        try {
-            
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-    }
 
 	/**
 	 * Muestra la presentación general del proyecto
