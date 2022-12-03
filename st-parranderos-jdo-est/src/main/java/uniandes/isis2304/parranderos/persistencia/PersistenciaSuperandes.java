@@ -121,6 +121,8 @@ public class PersistenciaSuperandes
 	private SQLSucursal sqlSucursal;
 
 	private SQLRol sqlRol;
+
+	private SQLCarrito sqlCarrito;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -151,6 +153,7 @@ public class PersistenciaSuperandes
 		tablas.add("A_SUPERMERCADO");
 		tablas.add("A_SUCURSAL");
 		tablas.add("A_ROl");
+		tablas.add("A_CARRITO");
 }
 
 	/**
@@ -239,6 +242,7 @@ public class PersistenciaSuperandes
 		sqlSupermercado = new SQLSupermercado(this);
 		sqlSucursal = new SQLSucursal(this);
 		sqlRol = new SQLRol(this);
+		sqlCarrito = new SQLCarrito(this);
 
 		}
 
@@ -305,6 +309,9 @@ public class PersistenciaSuperandes
 	public String darTablaRol()
 	{
 		return tablas.get(13);
+	}
+	public String darTablaCarrito(){
+		return tablas.get(14);
 	}
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
